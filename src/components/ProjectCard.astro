@@ -6,22 +6,49 @@ interface Props {
 }
 
 const { entry } = Astro.props;
-const { title, summary, period, role, category } = entry.data;
+const { title, summary, period, role, category, image, tags } = entry.data;
+
+const categoryGradients: Record<string, string> = {
+  "공공/정책": "from-blue-50 to-slate-100",
+  "사회혁신": "from-emerald-50 to-teal-100",
+  "기획·디자인 씽킹": "from-violet-50 to-purple-100",
+  "AI/도구": "from-amber-50 to-orange-100",
+  "코드랩 산출물": "from-gray-50 to-gray-200",
+};
+const gradient = categoryGradients[category] ?? "from-gray-50 to-gray-100";
 ---
 
 <a
   href={`${import.meta.env.BASE_URL}projects/${entry.id}`}
-  class="block p-6 border border-gray-200 rounded-xl hover:border-accent/40 hover:-translate-y-0.5 hover:shadow-[0_4px_12px_-2px_rgb(0_0_0_/_0.08)] transition-[transform,box-shadow,border-color] duration-200 group"
+  class="block rounded-xl overflow-hidden border border-gray-200 hover:border-gray-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_-4px_rgb(0_0_0_/_0.10)] transition-[transform,box-shadow,border-color] duration-200 group bg-white"
 >
-  <span class="inline-block px-2 py-1 bg-blue-50 text-accent text-xs font-medium rounded mb-4">
-    {category}
-  </span>
-  <h3 class="font-semibold text-gray-900 group-hover:text-accent transition-colors leading-snug mb-2">
-    {title}
-  </h3>
-  <p class="text-sm text-gray-500 leading-relaxed mb-4">{summary}</p>
-  <div class="flex flex-wrap gap-3 text-xs text-gray-400">
-    {period && <span>{period}</span>}
-    {role && <span>{role}</span>}
+  <!-- 썸네일 이미지 영역 -->
+  <div class={`aspect-[4/3] overflow-hidden bg-gradient-to-br ${gradient}`}>
+    {image ? (
+      <img
+        src={`${import.meta.env.BASE_URL}projects/${image}`}
+        alt={title}
+        class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-300"
+      />
+    ) : (
+      <div class="w-full h-full flex items-end p-4">
+        <span class="inline-block px-2 py-0.5 bg-white/70 text-xs font-medium text-gray-600 rounded">
+          {category}
+        </span>
+      </div>
+    )}
+  </div>
+
+  <!-- 카드 내용 -->
+  <div class="p-5">
+    <h3 class="font-semibold text-gray-900 group-hover:text-gray-600 transition-colors leading-snug mb-1.5">
+      {title}
+    </h3>
+    <p class="text-sm text-gray-500 leading-relaxed mb-3 line-clamp-2">{summary}</p>
+    <div class="flex flex-wrap gap-2 text-xs text-gray-400">
+      {role && <span class="font-medium">{role}</span>}
+      {role && period && <span>·</span>}
+      {period && <span>{period}</span>}
+    </div>
   </div>
 </a>

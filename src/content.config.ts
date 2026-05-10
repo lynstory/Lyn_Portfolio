@@ -16,6 +16,7 @@ const projects = defineCollection({
     role: z.string().optional(),
     category: z.enum(PROJECTS_CATEGORIES),
     tags: z.array(z.string()).default([]),
+    image: z.string().optional(), // public/projects/ 하위 파일명 (예: "kimst.jpg")
     date: z.coerce.date(),
     featured: z.boolean().default(false), // ROADMAP §7.2 — 최대 3개
     draft: z.boolean().default(false),

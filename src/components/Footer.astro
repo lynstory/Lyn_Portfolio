@@ -1,17 +1,58 @@
 ---
+const base = import.meta.env.BASE_URL;
 const year = new Date().getFullYear();
 ---
 
-<footer class="border-t border-gray-100 py-8 mt-16">
-  <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-3 text-sm text-gray-400">
-    <span>© {year} Lyn. All rights reserved.</span>
-    <a
-      href="https://github.com/lynstory"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="hover:text-accent transition-colors"
-    >
-      GitHub @lynstory
-    </a>
+<footer class="bg-[#1a1a1a] text-white">
+  <div class="max-w-5xl mx-auto px-6 py-16 md:py-20">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-10">
+
+      <!-- 좌측: 헤드라인 + 부제 -->
+      <div>
+        <p class="text-xs font-medium tracking-widest text-gray-400 uppercase mb-3">Let's connect</p>
+        <h2 class="text-2xl md:text-3xl font-bold leading-snug mb-2">
+          함께 문제를 해결하고<br />더 나은 기획을 만들어요.
+        </h2>
+      </div>
+
+      <!-- 우측: 링크 + 화살표 버튼 -->
+      <div class="flex items-center gap-6">
+        <a
+          href="mailto:lyn357abc@gmail.com"
+          class="text-sm text-gray-300 hover:text-white transition-colors"
+        >
+          Email
+        </a>
+        <a
+          href="https://github.com/lynstory"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-sm text-gray-300 hover:text-white transition-colors"
+        >
+          GitHub
+        </a>
+        <a
+          href="#"
+          class="text-sm text-gray-300 hover:text-white transition-colors"
+          aria-label="LinkedIn (준비 중)"
+        >
+          LinkedIn
+        </a>
+        <a
+          href={`${base}contact`}
+          class="w-10 h-10 rounded-full border border-white/40 flex items-center justify-center hover:bg-white hover:text-gray-900 transition-colors shrink-0"
+          aria-label="Contact 페이지로 이동"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- 하단 저작권 -->
+    <div class="mt-12 pt-6 border-t border-white/10">
+      <p class="text-xs text-gray-500">© {year} Lyn. All rights reserved.</p>
+    </div>
   </div>
 </footer>
