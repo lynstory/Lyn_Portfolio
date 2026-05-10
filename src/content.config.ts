@@ -1,0 +1,57 @@
+import { defineCollection, z } from "astro:content";
+import { glob } from "astro/loaders";
+
+// ROADMAP §7.3 — 카테고리는 5개 고정 enum
+const PROJECTS_CATEGORIES = ["공공/정책", "사회혁신", "기획·디자인 씽킹", "AI/도구", "코드랩 산출물"] as const;
+const EXPERIENCE_CATEGORIES = ["학교/학술", "동아리/대외활동", "국제 활동", "인턴/실무", "교육과정"] as const;
+
+// Projects 컬렉션 (ROADMAP §4.2, §7.1)
+// 새 프로젝트 추가: src/content/projects/[slug].mdx 파일 생성 → 빌드 시 카드 + 상세 페이지 자동 생성
+const projects = defineCollection({
+  loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "./src/content/projects" }),
+  schema: z.object({
+    title: z.string(),
+    summary: z.string(),
+    period: z.string(),
+    role: z.string().optional(),
+    category: z.enum(PROJECTS_CATEGORIES),
+    tags: z.array(z.string()).default([]),
+    date: z.coerce.date(),
+    featured: z.boolean().default(false), // ROADMAP §7.2 — 최대 3개
+    draft: z.boolean().default(false),
+  }),
+});
+
+// Experience 컬렉션 (ROADMAP §2.2 Experience)
+// date: ROADMAP에 명시된 연도가 있는 항목만 입력 (미상 항목은 비움 — CLAUDE.md §4 추측 금지)
+// order: 정렬용 정수 (1=최신, 클수록 오래됨)
+const experience = defineCollection({
+  loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "./src/content/experience" }),
+  schema: z.object({
+    title: z.string(),
+    period: z.string().optional(),
+    org: z.string().optional(),
+    description: z.string().optional(),
+    category: z.enum(EXPERIENCE_CATEGORIES),
+    date: z.coerce.date().optional(),
+    order: z.number(),
+    current: z.boolean().default(false),
+  }),
+});
+
+// Side Quests 컬렉션 (ROADMAP §2.2 Side Quests)
+// 톤: 더 개인적, 솔직, 사업가 마인드 OK (ROADMAP §3)
+const sideQuests = defineCollection({
+  loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "./src/content/side-quests" }),
+  schema: z.object({
+    title: z.string(),
+    period: z.string(),
+    tag: z.string(),
+    summary: z.string(),
+    date: z.coerce.date().optional(),
+    order: z.number().default(99),
+    current: z.boolean().default(false),
+  }),
+});
+
+export const collections = { projects, experience, sideQuests };

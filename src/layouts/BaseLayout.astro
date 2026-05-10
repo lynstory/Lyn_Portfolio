@@ -1,0 +1,68 @@
+---
+import "../styles/global.css";
+import Navigation from "../components/Navigation.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "PM 직무 어필 포트폴리오 — 문제를 정의하고 해결하는 기획자." } = Astro.props;
+---
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+
+    <!-- 폰트: Inter (영문) — Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- 폰트: Pretendard (국문) — jsDelivr CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"
+    />
+
+    <!-- OG / Twitter 메타 -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title ? `${title} — Lyn` : "Lyn Portfolio"} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:site_name" content="Lyn Portfolio" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title ? `${title} — Lyn` : "Lyn Portfolio"} />
+    <meta name="twitter:description" content={description} />
+
+    <title>{title} | Lyn</title>
+  </head>
+  <body class="min-h-screen flex flex-col bg-white text-gray-900">
+    <Navigation />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("is-visible");
+              observer.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+      );
+      document.querySelectorAll(".fade-in-up").forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>

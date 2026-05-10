@@ -1,0 +1,39 @@
+---
+// ROADMAP §2.2 Experience — 시간순 타임라인 (2018~현재)
+// Phase 2: Content Collections 기반으로 자동화 (src/content/experience/*.mdx)
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ExperienceItem from "../components/ExperienceItem.astro";
+
+const categories = ["학교/학술", "동아리/대외활동", "국제 활동", "인턴/실무", "교육과정"] as const;
+
+const allExp = await getCollection("experience");
+
+// order asc 정렬 (1=최신이 위)
+const sorted = allExp.sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout title="Experience" description="2018년부터 현재까지의 학습·활동·실무 경험 타임라인.">
+  <div class="max-w-3xl mx-auto px-6 py-20">
+
+    <h1 class="text-3xl md:text-4xl font-bold text-gray-900 leading-tight mb-4">Experience</h1>
+    <p class="text-gray-500 mb-10 text-sm leading-relaxed">
+      2018년부터 현재까지의 활동·실무 경험을 시간순으로 정리했습니다.
+    </p>
+
+    <!-- 카테고리 태그 (ROADMAP §2.2 Experience) -->
+    <div class="flex flex-wrap gap-2 mb-14">
+      {categories.map((cat) => (
+        <span class="px-3 py-1 bg-gray-100 rounded-full text-xs font-medium text-gray-500">
+          {cat}
+        </span>
+      ))}
+    </div>
+
+    <!-- 타임라인 -->
+    <ol class="fade-in-up relative border-l border-gray-200 space-y-10 list-none m-0 p-0">
+      {sorted.map((entry) => <ExperienceItem entry={entry} />)}
+    </ol>
+
+  </div>
+</BaseLayout>

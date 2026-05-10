@@ -1,0 +1,71 @@
+---
+// ROADMAP §2.2 Projects — PM 직무 어필용 정식 케이스 스터디 모음
+// Phase 2: Content Collections 기반으로 자동화 (src/content/projects/*.mdx)
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+
+const categories = ["공공/정책", "사회혁신", "기획·디자인 씽킹", "AI/도구", "코드랩 산출물"] as const;
+
+const allProjects = await getCollection("projects", ({ data }) => !data.draft);
+
+// ROADMAP §7.2: featured 상단 고정 3개 + 나머지 date desc
+const featured = allProjects
+  .filter((p) => p.data.featured)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
+
+const rest = allProjects
+  .filter((p) => !p.data.featured)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<BaseLayout title="Projects" description="문제를 정의하고 해결한 과정을 담은 PM 직무 어필 케이스 스터디.">
+  <div class="max-w-5xl mx-auto px-6 py-20">
+
+    <h1 class="text-3xl md:text-4xl font-bold text-gray-900 leading-tight mb-4">Projects</h1>
+    <p class="text-gray-500 mb-10 text-sm leading-relaxed">
+      문제를 정의하고 해결한 과정을 케이스 스터디로 정리했습니다.
+    </p>
+
+    <!-- 카테고리 필터 (Phase 1 정적 디자인 유지 — 필터 로직은 Phase 4 인터랙션에서) -->
+    <!-- TODO: Phase 4에서 클릭 필터 기능 활성화 -->
+    <div class="flex flex-wrap gap-2 mb-14">
+      {categories.map((cat) => (
+        <button
+          disabled
+          aria-disabled="true"
+          class="px-3 py-1.5 bg-gray-100 rounded-full text-xs font-medium text-gray-400 cursor-default select-none"
+        >
+          {cat}
+        </button>
+      ))}
+    </div>
+
+    <!-- 대표 프로젝트 (featured: true — ROADMAP §7.2) -->
+    {featured.length > 0 && (
+      <section class="fade-in-up mb-20">
+        <h2 class="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-6">대표 프로젝트</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {featured.map((entry) => <ProjectCard entry={entry} />)}
+        </div>
+      </section>
+    )}
+
+    <!-- 전체 프로젝트 (최신순 — ROADMAP §7.2) -->
+    <section class="fade-in-up">
+      <h2 class="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-6">전체 프로젝트</h2>
+      {rest.length > 0 ? (
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {rest.map((entry) => <ProjectCard entry={entry} />)}
+        </div>
+      ) : (
+        <p class="text-sm text-gray-400">
+          코드랩아카데미 산출물 등 추가 프로젝트가 이곳에 자동으로 정렬될 예정입니다.
+          {/* 새 프로젝트 추가: src/content/projects/[slug].mdx 파일 생성 → 빌드 시 자동 등록 (ROADMAP §7.1) */}
+        </p>
+      )}
+    </section>
+
+  </div>
+</BaseLayout>
