@@ -12,7 +12,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <!-- 프로필 사진은 사용자가 /public/profile.jpg에 배치 완료 (CLAUDE.md §4) -->
     <div class="flex justify-center mb-12">
       <img
-        src="/profile.jpg"
+        src={`${import.meta.env.BASE_URL}profile.jpg`}
         alt="프로필 사진"
         class="w-36 h-36 rounded-full object-cover border-4 border-gray-100 shadow-sm"
       />
@@ -122,7 +122,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <!-- Side Quests 안내 (ROADMAP §2.2 About — "About 본문 내부 링크로만 진입") -->
     <div class="fade-in-up border-t border-gray-100 pt-12 text-center">
       <p class="text-gray-400 text-sm mb-4">더 다양한 시도들이 궁금하다면</p>
-      <a href="/side-quests" class="inline-flex items-center gap-1.5 text-accent font-medium hover:underline text-sm">
+      <a href={`${import.meta.env.BASE_URL}side-quests`} class="inline-flex items-center gap-1.5 text-accent font-medium hover:underline text-sm">
         Side Quests 보기 →
       </a>
     </div>

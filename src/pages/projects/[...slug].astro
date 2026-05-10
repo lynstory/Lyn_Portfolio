@@ -19,7 +19,7 @@ const { Content } = await render(entry);
   <article class="max-w-3xl mx-auto px-6 py-20">
 
     <!-- 뒤로 가기 -->
-    <a href="/projects" class="inline-flex items-center gap-1 text-xs text-gray-400 hover:text-accent transition-colors mb-10">
+    <a href={`${import.meta.env.BASE_URL}projects`} class="inline-flex items-center gap-1 text-xs text-gray-400 hover:text-accent transition-colors mb-10">
       ← Projects로 돌아가기
     </a>
 
