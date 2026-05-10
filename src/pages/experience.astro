@@ -21,19 +21,57 @@ const sorted = allExp.sort((a, b) => a.data.order - b.data.order);
       2018년부터 현재까지의 활동·실무 경험을 시간순으로 정리했습니다.
     </p>
 
-    <!-- 카테고리 태그 (ROADMAP §2.2 Experience) -->
+    <!-- 카테고리 태그 (클릭 필터) -->
     <div class="flex flex-wrap gap-2 mb-14">
       {categories.map((cat) => (
-        <span class="px-3 py-1 bg-gray-100 rounded-full text-xs font-medium text-gray-500">
+        <button
+          data-filter={cat}
+          class="px-3 py-1 bg-gray-100 rounded-full text-xs font-medium text-gray-500 hover:bg-gray-200 transition-colors cursor-pointer"
+        >
           {cat}
-        </span>
+        </button>
       ))}
     </div>
 
     <!-- 타임라인 -->
-    <ol class="fade-in-up relative border-l border-gray-200 space-y-10 list-none m-0 p-0">
+    <ol id="exp-list" class="fade-in-up relative border-l border-gray-200 space-y-10 list-none m-0 p-0">
       {sorted.map((entry) => <ExperienceItem entry={entry} />)}
     </ol>
 
   </div>
 </BaseLayout>
+
+<script>
+  const filterBtns = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
+  const items = document.querySelectorAll<HTMLElement>('#exp-list [data-category]');
+  let active: string | null = null;
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const cat = btn.dataset.filter!;
+
+      if (active === cat) {
+        active = null;
+        items.forEach(item => item.classList.remove('hidden'));
+        filterBtns.forEach(b => resetBtn(b));
+      } else {
+        active = cat;
+        items.forEach(item => {
+          item.classList.toggle('hidden', item.dataset.category !== cat);
+        });
+        filterBtns.forEach(b => {
+          b.dataset.filter === cat ? activateBtn(b) : resetBtn(b);
+        });
+      }
+    });
+  });
+
+  function activateBtn(btn: HTMLButtonElement) {
+    btn.classList.add('bg-accent', 'text-white');
+    btn.classList.remove('bg-gray-100', 'text-gray-500', 'hover:bg-gray-200');
+  }
+  function resetBtn(btn: HTMLButtonElement) {
+    btn.classList.remove('bg-accent', 'text-white');
+    btn.classList.add('bg-gray-100', 'text-gray-500', 'hover:bg-gray-200');
+  }
+</script>
