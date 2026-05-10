@@ -1,131 +1,258 @@
 ---
-// 콘텐츠 가드 (ROADMAP §2.2 About, §3 / CLAUDE.md §3):
-// 이 페이지에서 금지 표현 — 우울증, 자살, 자해, 정신과, 상담사, 병원, 약물, 가족 사적 사항, 군대 사적 사항, 특정 인물 실명
-// 허용(간접·은유): "은둔과 자기 이해의 시간", "사람과 삶을 깊이 다시 본 시기" 등
+// CLAUDE.md §2, §3 — 금지 표현 준수. 성장의 시기: 간접·은유적 표현만.
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const base = import.meta.env.BASE_URL;
+const year = new Date().getFullYear();
+
+const milestones = [
+  { year: "2018",     lines: ["한양대 입학"],           current: false },
+  { year: "2018–20",  lines: ["OVAL Korea"],            current: false },
+  { year: "2020",     lines: ["창업 아이디어톤", "최우수상"], current: false },
+  { year: "2022–23",  lines: ["1인 사업"],              current: false },
+  { year: "2024",     lines: ["KIMST 인턴"],            current: false },
+  { year: "2025–",    lines: ["코드랩", "PM 진행 중"],  current: true  },
+];
 ---
 
-<BaseLayout title="About" description="다양한 도메인에서 문제 정의·기획·실행을 경험한 제너럴리스트 Lyn의 이야기.">
-  <div class="max-w-3xl mx-auto px-6 py-20">
+<BaseLayout
+  title="About"
+  description="다양한 도메인에서 문제 정의·기획·실행을 경험한 제너럴리스트 Lyn의 이야기."
+  hideFooter={true}
+>
 
-    <!-- 프로필 사진 (ROADMAP §5.5 — About 페이지 상단) -->
-    <!-- 프로필 사진은 사용자가 /public/profile.jpg에 배치 완료 (CLAUDE.md §4) -->
-    <div class="flex justify-center mb-12">
-      <img
-        src={`${import.meta.env.BASE_URL}profile.jpg`}
-        alt="프로필 사진"
-        class="w-36 h-36 rounded-full object-cover border-4 border-gray-100 shadow-sm"
-      />
-    </div>
+  <!-- Hero: 좌(텍스트) + 우(직사각형 프로필) -->
+  <section class="bg-(--color-bg-warm)">
+    <div class="max-w-5xl mx-auto px-6 pt-16 pb-20 md:pt-20 md:pb-28">
+      <div class="flex flex-col-reverse md:flex-row items-center gap-10 md:gap-16">
 
-    <h1 class="text-3xl md:text-4xl font-bold text-gray-900 leading-tight mb-10">About</h1>
-
-    <!-- 자기소개: 4문단 (ROADMAP §2.2 About) -->
-    <section class="fade-in-up mb-16 space-y-5 text-gray-700 leading-relaxed text-base">
-      <p>한양대 해양융합공학 전공이지만, 대학 6년간 한 분야에 머물지 않았습니다. 동아리 운영부터 국제 청년 협업, 창업 아이디어톤, 1인 사업, 창업투자기관 인턴까지 — 환경을 가리지 않고 기획부터 실행까지 직접 부딪혀온 시간이었습니다. 도메인보다는 '문제와 사람'에 끌리는, 잡종성과 직접 실행을 강점으로 가진 사람입니다.</p>
-      <p>가장 잘하는 일이자 가장 즐기는 일은 ① 문제 정의, ② 사람을 움직이는 동기 설계, ③ 0→1 실행입니다. '무지개냥(반려동물 장례업체 중개 플랫폼)'이 2020년 창업 아이디어톤에서 최우수상을 받은 것도, '시장이 크다'가 아니라 '왜 보호자들이 마지막 순간에 헤매는가'라는 질문에서 출발했기 때문이라 생각합니다. 1인 사업을 직접 굴리며 칼럼·전자책·전화 상담·강의로 이어지는 퍼널을 처음부터 끝까지 설계해봤고, OVAL·한밀레·KIMST에서 동아리·국제 단체·공공기관·1인 사업이라는 서로 다른 환경에서 무언가를 굴려본 경험이 강점이라고 생각합니다.</p>
-      <p>도메인을 가리지 않습니다. 결국 어떤 제품이든 그 끝에는 사람이 어떤 행동을 하느냐의 문제가 있다고 생각하고, 그래서 도메인보다 그 안에서 사람이 어떤 변화를 겪는지를 설계할 수 있는 자리에 끌립니다. 일을 할 때는 표면 증상이 아니라 한 진실에 닿을 때까지 관찰하고, 좋은 아이디어를 길게 논의하기보다 작게라도 굴려보고, 사용자를 '전환시킬 대상'이 아닌 '함께 더 나아질 사람'으로 두는 것을 원칙으로 삼고 있습니다.</p>
-      <p>사용자가 말하지 않은 진짜 문제까지 파고들어 정의하고, 팀이 같은 그림을 공유한 채 각자의 강점으로 움직일 수 있도록 길을 만들어주는 PM이 되고 싶습니다. 정해진 프로세스 안에서 매끄럽게 운영하는 일보다는, 정의되지 않은 문제를 직접 부딪혀가며 배울 수 있는 — 사용자와의 거리가 가까운 자리에 있고 싶습니다. 한 줄로 정리하자면, "오래 관찰하고 길게 호흡하면서, 그래도 결국 직접 굴려봐야 직성이 풀리는 사람"입니다.</p>
-    </section>
-
-    <!-- 타임라인 + Venn 다이어그램 -->
-    <section class="fade-in-up mb-16 space-y-14">
-
-      <!-- 1. 가로 타임라인 -->
-      <div>
-        <p class="text-xs tracking-widest uppercase text-accent font-semibold text-center mb-2">JOURNEY</p>
-        <h3 class="text-base font-semibold text-gray-900 text-center mb-8">6년의 여정</h3>
-        <div class="overflow-x-auto">
-          <div class="min-w-[580px]">
-            <svg viewBox="0 0 700 165" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg" style="font-family: 'Pretendard Variable', Inter, sans-serif;">
-              <line x1="50" y1="105" x2="650" y2="105" stroke="rgba(59,91,169,0.25)" stroke-width="2"/>
-
-              <circle cx="50" cy="105" r="6" fill="#3B5BA9"/>
-              <text x="50" y="83" text-anchor="middle" font-size="11.5" fill="#1a1a1a" font-weight="600">한양대</text>
-              <text x="50" y="97" text-anchor="middle" font-size="11.5" fill="#1a1a1a" font-weight="600">입학</text>
-              <text x="50" y="124" text-anchor="middle" font-size="10" fill="#737373">2018</text>
-
-              <circle cx="170" cy="105" r="6" fill="#3B5BA9"/>
-              <text x="170" y="89" text-anchor="middle" font-size="10" fill="#737373">2018–20</text>
-              <text x="170" y="124" text-anchor="middle" font-size="11.5" fill="#1a1a1a" font-weight="600">OVAL Korea</text>
-
-              <circle cx="290" cy="105" r="6" fill="#3B5BA9"/>
-              <text x="290" y="65" text-anchor="middle" font-size="11.5" fill="#1a1a1a" font-weight="600">창업</text>
-              <text x="290" y="79" text-anchor="middle" font-size="11.5" fill="#1a1a1a" font-weight="600">아이디어톤</text>
-              <text x="290" y="93" text-anchor="middle" font-size="10" fill="#3B5BA9">★ 최우수상</text>
-              <text x="290" y="124" text-anchor="middle" font-size="10" fill="#737373">2020</text>
-
-              <circle cx="410" cy="105" r="6" fill="#3B5BA9"/>
-              <text x="410" y="89" text-anchor="middle" font-size="10" fill="#737373">2022–23</text>
-              <text x="410" y="124" text-anchor="middle" font-size="11.5" fill="#1a1a1a" font-weight="600">1인 사업</text>
-
-              <circle cx="530" cy="105" r="6" fill="#3B5BA9"/>
-              <text x="530" y="83" text-anchor="middle" font-size="11.5" fill="#1a1a1a" font-weight="600">KIMST</text>
-              <text x="530" y="97" text-anchor="middle" font-size="11.5" fill="#1a1a1a" font-weight="600">인턴</text>
-              <text x="530" y="124" text-anchor="middle" font-size="10" fill="#737373">2024</text>
-
-              <circle cx="650" cy="105" r="6" fill="#3B5BA9"/>
-              <circle cx="650" cy="105" r="11" fill="none" stroke="#3B5BA9" stroke-width="1" stroke-dasharray="3 2" opacity="0.5"/>
-              <text x="650" y="89" text-anchor="middle" font-size="10" fill="#737373">2025–</text>
-              <text x="650" y="124" text-anchor="middle" font-size="11.5" fill="#1a1a1a" font-weight="600">코드랩 PM</text>
-              <text x="650" y="138" text-anchor="middle" font-size="10" fill="#3B5BA9">진행 중</text>
-            </svg>
+        <!-- 좌: 텍스트 -->
+        <div class="flex-1 text-center md:text-left">
+          <p class="hero-anim text-xs font-medium tracking-widest text-gray-400 uppercase mb-5" style="animation-delay:0ms">
+            About Me
+          </p>
+          <h1
+            class="hero-anim text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-[1.08] tracking-tight mb-5"
+            style="animation-delay:80ms"
+          >
+            문제와 사람을 오래 관찰하고<br />결국 실행까지 가져가는 기획자
+          </h1>
+          <p class="hero-anim text-sm text-gray-400 mb-6" style="animation-delay:140ms">
+            PM 사고 &middot; 동기 설계 &middot; 0→1 실행 &middot; 국제 협업 &middot; 사업 경험 &middot; AI 기반 기획
+          </p>
+          <p class="hero-anim text-base text-gray-600 leading-relaxed max-w-md mx-auto md:mx-0 mb-10" style="animation-delay:200ms">
+            한양대 해양융합공학 전공이지만 한 분야에만 머물지 않았습니다.<br />
+            국제 청년 협업, 창업 아이디어톤, 1인 사업, 공공기관 인턴까지<br />
+            다양한 환경에서 기획부터 실행까지 직접 부딪혀 왔습니다.<br />
+            도메인보다 문제와 사람에 끌리는 제너럴리스트입니다.
+          </p>
+          <div
+            class="hero-anim flex flex-col sm:flex-row gap-3 justify-center md:justify-start"
+            style="animation-delay:260ms"
+          >
+            <a
+              href={`${base}side-quests`}
+              class="px-6 py-3 bg-gray-900 text-white font-medium rounded-md hover:bg-gray-700 transition-colors text-sm text-center"
+            >
+              Side Quests 보기
+            </a>
+            <a
+              href={`${base}contact`}
+              class="px-6 py-3 border border-gray-900 text-gray-900 font-medium rounded-md hover:bg-gray-50 transition-colors text-sm text-center"
+            >
+              Contact
+            </a>
           </div>
         </div>
+
+        <!-- 우: 프로필 사진 (직사각형) -->
+        <div class="hero-anim shrink-0" style="animation-delay:120ms">
+          <div class="w-56 md:w-72 lg:w-80 aspect-[3/4] rounded-2xl overflow-hidden bg-gray-100">
+            <img
+              src={`${base}profile.jpg`}
+              alt="프로필 사진"
+              class="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+
       </div>
+    </div>
+  </section>
 
-      <!-- 2. 3가지 핵심 동작 Venn 다이어그램 -->
-      <div>
-        <p class="text-xs tracking-widest uppercase text-accent font-semibold text-center mb-2">METHOD</p>
-        <h3 class="text-base font-semibold text-gray-900 text-center mb-8">내가 일하는 세 가지 동작</h3>
-        <div class="flex justify-center">
-          <svg viewBox="0 0 400 340" class="w-full max-w-xs md:max-w-sm h-auto" xmlns="http://www.w3.org/2000/svg" style="font-family: 'Pretendard Variable', Inter, sans-serif;">
-            <circle cx="200" cy="130" r="90" fill="rgba(59,91,169,0.08)" stroke="#3B5BA9" stroke-width="1.5"/>
-            <circle cx="145" cy="230" r="90" fill="rgba(59,91,169,0.08)" stroke="#3B5BA9" stroke-width="1.5"/>
-            <circle cx="255" cy="230" r="90" fill="rgba(59,91,169,0.08)" stroke="#3B5BA9" stroke-width="1.5"/>
-
-            <text x="200" y="187" text-anchor="middle" font-size="10" fill="#3B5BA9" font-weight="600">PM 사고</text>
-
-            <text x="200" y="22" text-anchor="middle" font-size="13" fill="#1a1a1a" font-weight="700">문제 정의</text>
-            <text x="200" y="37" text-anchor="middle" font-size="10" fill="#525252">진실에 닿을 때까지 관찰</text>
-
-            <text x="8" y="275" text-anchor="start" font-size="13" fill="#1a1a1a" font-weight="700">동기 설계</text>
-            <text x="8" y="290" text-anchor="start" font-size="10" fill="#525252">사람을 움직이는 흐름</text>
-
-            <text x="392" y="275" text-anchor="end" font-size="13" fill="#1a1a1a" font-weight="700">0→1 실행</text>
-            <text x="392" y="290" text-anchor="end" font-size="10" fill="#525252">작게라도 굴려봄</text>
-          </svg>
+  <!-- Journey -->
+  <section class="fade-in-up max-w-5xl mx-auto px-6 py-8">
+    <div class="border border-gray-200 rounded-2xl p-8 md:p-12 bg-white">
+      <p class="text-xs font-medium tracking-widest text-gray-400 uppercase mb-2">Journey</p>
+      <h2 class="text-2xl font-bold text-gray-900 mb-12">6년의 여정</h2>
+      <div class="overflow-x-auto">
+        <div class="relative flex justify-between min-w-[560px] px-3">
+          <!-- 점선 연결선 -->
+          <div class="absolute top-3 left-6 right-6 border-t-2 border-dashed border-gray-300 z-0"></div>
+          {milestones.map((m) => (
+            <div class="flex flex-col items-center z-10">
+              {m.current ? (
+                <div class="w-6 h-6 rounded-full border-2 border-gray-900 bg-white"></div>
+              ) : (
+                <div class="w-6 h-6 rounded-full bg-gray-900"></div>
+              )}
+              <div class="mt-3 text-center">
+                <div class="text-xs font-semibold text-gray-700 whitespace-nowrap mb-0.5">{m.year}</div>
+                {m.lines.map((line) => (
+                  <div class="text-xs text-gray-500 whitespace-nowrap leading-snug">{line}</div>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-
-    </section>
-
-    <!-- 성장의 시기 (ROADMAP §2.2 About) -->
-    <!-- 주의: 간접·은유적 표현만. 금지 표현 사용 불가 (CLAUDE.md §3) -->
-    <section class="fade-in-up mb-16">
-      <h2 class="text-2xl font-bold text-gray-900 mb-5">성장의 시기</h2>
-      <div class="text-gray-700 leading-relaxed">
-        <p>대학 시절, 외부 활동들 사이에서 — 눈에 잘 보이지 않는 — 내면으로 깊이 들어가야 했던 시기가 있었습니다. 사람의 동기와 삶의 작동 방식을 여러 책과 직접적인 경험을 통해 오래 들여다본 시간이었습니다. 그 시기를 통과하면서 더 유연해졌고 더 단단해졌으며, 무엇보다 사람이 어떻게 자기 자신과 싸우고 화해하는지를 가까이서 배웠습니다. 그 시간이 지금의 기획 방식에 — 표면 행동 너머의 동기를 읽거나, 계획과 어긋났을 때 흐름을 다시 잡는 방식으로 — 살아 작용하고 있다고 생각합니다.</p>
-      </div>
-    </section>
-
-    <!-- 관심사 / 장기적 비전 (ROADMAP §2.2 About) -->
-    <!-- 행복학교는 여기서 한 줄 언급 (ROADMAP §2.2 About) -->
-    <section class="fade-in-up mb-20">
-      <h2 class="text-2xl font-bold text-gray-900 mb-5">관심사 & 비전</h2>
-      <div class="text-gray-700 leading-relaxed space-y-4">
-        <p>지금 가장 시간을 쓰는 영역은 AI 기반 PM 역량과 사람 행동 설계입니다. 기술이 사람의 의사결정과 행동에 어떻게 맞물리는지 — 그 교차점에서 어떤 제품이 가능한지를 탐구하는 중입니다.</p>
-        <p>길게 보면, 하나의 직함이나 포지션보다 사람들의 삶에 진정한 가치를 제공하는 사람이 되고 싶습니다. 그 방향의 한 축으로, 스스로를 사랑하며 자기답게 사는 법을 — 건강·돈·관계·의미·감정 다섯 영역으로 나누어 — 함께 탐구할 수 있는 공간, '행복학교'를 구상하고 있습니다.</p>
-      </div>
-    </section>
-
-    <!-- Side Quests 안내 (ROADMAP §2.2 About — "About 본문 내부 링크로만 진입") -->
-    <div class="fade-in-up border-t border-gray-100 pt-12 text-center">
-      <p class="text-gray-400 text-sm mb-4">더 다양한 시도들이 궁금하다면</p>
-      <a href={`${import.meta.env.BASE_URL}side-quests`} class="inline-flex items-center gap-1.5 text-accent font-medium hover:underline text-sm">
-        Side Quests 보기 →
-      </a>
     </div>
+  </section>
 
+  <!-- Method -->
+  <section class="fade-in-up max-w-5xl mx-auto px-6 py-4">
+    <div class="border border-gray-200 rounded-2xl p-8 md:p-12 bg-white">
+      <p class="text-xs font-medium tracking-widest text-gray-400 uppercase mb-2">Method</p>
+      <h2 class="text-2xl font-bold text-gray-900 mb-10">내가 일하는 세 가지 동작</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+        <!-- 문제 정의 -->
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 bg-gray-900 rounded-full flex items-center justify-center shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="white" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-gray-900 mb-1">문제 정의</h3>
+            <p class="text-sm text-gray-500">진실에 닿을 때까지 관찰</p>
+          </div>
+        </div>
+
+        <!-- 동기 설계 -->
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 bg-gray-900 rounded-full flex items-center justify-center shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="white" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-gray-900 mb-1">동기 설계</h3>
+            <p class="text-sm text-gray-500">사람을 움직이는 흐름 설계</p>
+          </div>
+        </div>
+
+        <!-- 0→1 실행 -->
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 bg-gray-900 rounded-full flex items-center justify-center shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="white" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-gray-900 mb-1">0→1 실행</h3>
+            <p class="text-sm text-gray-500">좋은 아이디어는 작게라도 굴러봄</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 성장의 시기 & 관심사 & 비전 -->
+  <section class="fade-in-up bg-(--color-bg-warm-deep) py-16 mt-8">
+    <div class="max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12">
+
+      <!-- 성장의 시기 -->
+      <div>
+        <h3 class="font-bold text-gray-900 text-lg mb-4">성장의 시기</h3>
+        <p class="text-sm text-gray-600 leading-relaxed mb-8">
+          대학 시절 외부 활동들 사이에서 내면으로 깊이<br />
+          들어가야 했던 시간이 있었습니다.<br />
+          사람의 동기와 삶의 작동 방식을 오래 들여다보며<br />
+          더 유연하고 단단해졌고, 그 시간은 지금의<br />
+          기획 방식에 살아 작용하고 있습니다.
+        </p>
+        <div class="aspect-[4/3] rounded-xl bg-gradient-to-br from-[#EEE8DF] to-[#D5C9B8] overflow-hidden"></div>
+      </div>
+
+      <!-- 관심사 & 비전 -->
+      <div>
+        <h3 class="font-bold text-gray-900 text-lg mb-4">관심사 & 비전</h3>
+        <p class="text-sm text-gray-600 leading-relaxed mb-8">
+          지금 가장 시간을 쏟는 영역은 AI 기반 PM 역량과<br />
+          사람 행동 설계입니다.<br />
+          기술과 사람의 의사결정이 만나는 지점을 탐구하며,<br />
+          길게는 사람들의 삶에 진정한 가치를 주는 공간<br />
+          '행복학교'를 구상하고 있습니다.
+        </p>
+        <div class="aspect-[4/3] rounded-xl bg-gradient-to-br from-[#DDD6CC] to-[#C4BAA9] overflow-hidden"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Quote -->
+  <section class="fade-in-up max-w-5xl mx-auto px-6 py-8 pb-14">
+    <div class="border border-gray-200 rounded-2xl p-8 md:p-12 bg-white">
+      <div class="text-7xl text-gray-200 leading-none font-serif mb-4">"</div>
+      <p class="text-lg md:text-xl font-medium text-gray-900 leading-relaxed">
+        사용자가 말하지 않은 진짜 문제까지 파고들어 정의하고,<br />
+        팀이 같은 그림을 공유한 채 움직일 수 있도록 길을 만드는 PM이 되고 싶습니다.
+      </p>
+    </div>
+  </section>
+
+  <!-- 커스텀 다크 CTA — 글로벌 Footer 대체 (hideFooter=true) -->
+  <div class="bg-[#1a1a1a] text-white">
+    <div class="max-w-5xl mx-auto px-6 py-16 md:py-20">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-10">
+
+        <!-- 좌: 타이틀 -->
+        <div>
+          <p class="text-xs font-medium tracking-widest text-gray-400 uppercase mb-3">Side Quests</p>
+          <h2 class="text-2xl md:text-3xl font-bold leading-snug mb-2">
+            더 다양한 시도들이<br />궁금하다면
+          </h2>
+          <p class="text-sm text-gray-400">배경·성장 이야기와 사이드 퀘스트를 더 만나보세요.</p>
+        </div>
+
+        <!-- 우: 링크 + 화살표 -->
+        <div class="flex items-center gap-5 flex-wrap">
+          <a href="mailto:lyn357abc@gmail.com" class="flex items-center gap-2 text-sm text-gray-300 hover:text-white transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 shrink-0">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+            </svg>
+            Email
+          </a>
+          <a href="https://github.com/lynstory" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-sm text-gray-300 hover:text-white transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 shrink-0">
+              <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+            </svg>
+            GitHub
+          </a>
+          <a href="#" class="flex items-center gap-2 text-sm text-gray-300 hover:text-white transition-colors" aria-label="LinkedIn (준비 중)">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 shrink-0">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+            LinkedIn
+          </a>
+          <a
+            href={`${base}side-quests`}
+            class="w-10 h-10 rounded-full border border-white/40 flex items-center justify-center hover:bg-white hover:text-gray-900 transition-colors shrink-0"
+            aria-label="Side Quests로 이동"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
+            </svg>
+          </a>
+        </div>
+
+      </div>
+      <div class="mt-12 pt-6 border-t border-white/10">
+        <p class="text-xs text-gray-500">© {year} Lyn. All rights reserved.</p>
+      </div>
+    </div>
   </div>
+
 </BaseLayout>

@@ -6,9 +6,10 @@ import Footer from "../components/Footer.astro";
 interface Props {
   title: string;
   description?: string;
+  hideFooter?: boolean;
 }
 
-const { title, description = "PM 직무 어필 포트폴리오 — 문제를 정의하고 해결하는 기획자." } = Astro.props;
+const { title, description = "PM 직무 어필 포트폴리오 — 문제를 정의하고 해결하는 기획자.", hideFooter = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -49,7 +50,7 @@ const { title, description = "PM 직무 어필 포트폴리오 — 문제를 정
     <main class="flex-1">
       <slot />
     </main>
-    <Footer />
+    {!hideFooter && <Footer />}
     <script>
       const observer = new IntersectionObserver(
         (entries) => {
