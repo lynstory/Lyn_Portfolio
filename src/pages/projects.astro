@@ -32,7 +32,7 @@ const selectedProjects = allProjects
       <h1 class="text-5xl md:text-6xl font-bold text-gray-900 leading-[1.08] tracking-tight shrink-0">
         문제를 발견하고<br />기획하고<br />직접 실행한 프로젝트들
       </h1>
-      <p class="text-sm md:text-base text-gray-500 leading-relaxed pt-1 max-w-xs">
+      <p class="text-sm md:text-base text-gray-500 leading-relaxed pt-1">
         기획자로서 문제를 정의하고, 사람의 동기를 설계하며,<br />
         직접 실행까지 이어간 프로젝트들을 모았습니다.<br />
         작은 실험부터 공공·임팩트 프로젝트까지,<br />
@@ -310,23 +310,5 @@ const selectedProjects = allProjects
     </div>
   </div>
 
-  <script>
-    const tabs = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
-    const wrappers = document.querySelectorAll<HTMLElement>('[data-cat]');
-    tabs.forEach((tab) => {
-      tab.addEventListener('click', () => {
-        const f = tab.dataset.filter ?? '전체';
-        tabs.forEach((t) => {
-          t.classList.remove('bg-gray-900', 'text-white');
-          t.classList.add('bg-white', 'border', 'border-gray-200', 'text-gray-600');
-        });
-        tab.classList.remove('bg-white', 'border', 'border-gray-200', 'text-gray-600');
-        tab.classList.add('bg-gray-900', 'text-white');
-        wrappers.forEach((w) => {
-          w.classList.toggle('hidden', f !== '전체' && w.dataset.cat !== f);
-        });
-      });
-    });
-  </script>
 
 </BaseLayout>
