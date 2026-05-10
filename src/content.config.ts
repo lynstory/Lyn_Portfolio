@@ -2,7 +2,7 @@ import { defineCollection, z } from "astro:content";
 import { glob } from "astro/loaders";
 
 // ROADMAP §7.3 — 카테고리는 5개 고정 enum
-const PROJECTS_CATEGORIES = ["공공/정책", "사회혁신", "기획·디자인 씽킹", "AI/도구", "코드랩 산출물"] as const;
+const PROJECTS_CATEGORIES = ["기획", "공공·정책", "임팩트", "AI", "브랜딩"] as const;
 const EXPERIENCE_CATEGORIES = ["학교/학술", "동아리/대외활동", "국제 활동", "인턴/실무", "교육과정"] as const;
 
 // Projects 컬렉션 (ROADMAP §4.2, §7.1)
@@ -19,6 +19,7 @@ const projects = defineCollection({
     image: z.string().optional(), // public/projects/ 하위 파일명 (예: "kimst.jpg")
     date: z.coerce.date(),
     featured: z.boolean().default(false), // ROADMAP §7.2 — 최대 3개
+    highlight: z.boolean().default(false), // projects 페이지 대형 Featured 카드
     draft: z.boolean().default(false),
   }),
 });
