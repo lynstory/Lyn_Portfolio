@@ -23,6 +23,12 @@ const sorted = allExp.sort((a, b) => a.data.order - b.data.order);
 
     <!-- 카테고리 태그 (클릭 필터) -->
     <div class="flex flex-wrap gap-2 mb-14">
+      <button
+        data-filter="전체"
+        class="px-3 py-1 rounded-full text-xs font-medium transition-colors cursor-pointer bg-accent text-white"
+      >
+        전체
+      </button>
       {categories.map((cat) => (
         <button
           data-filter={cat}
@@ -50,10 +56,10 @@ const sorted = allExp.sort((a, b) => a.data.order - b.data.order);
     btn.addEventListener('click', () => {
       const cat = btn.dataset.filter!;
 
-      if (active === cat) {
+      if (cat === '전체' || active === cat) {
         active = null;
         items.forEach(item => item.classList.remove('hidden'));
-        filterBtns.forEach(b => resetBtn(b));
+        filterBtns.forEach(b => b.dataset.filter === '전체' ? activateBtn(b) : resetBtn(b));
       } else {
         active = cat;
         items.forEach(item => {
