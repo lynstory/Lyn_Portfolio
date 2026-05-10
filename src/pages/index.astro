@@ -17,7 +17,8 @@ const hashtags = ["#문제해결", "#동기설계", "#0→1 실행", "#국제협
 <BaseLayout title="Home" description="PM 직무 어필 포트폴리오 — 다양한 도메인에서 문제 정의·기획·실행을 경험한 제너럴리스트.">
 
   <!-- Hero -->
-  <section class="max-w-5xl mx-auto px-6 pt-16 pb-20 md:pt-20 md:pb-28">
+  <section class="bg-(--color-bg-warm)">
+  <div class="max-w-5xl mx-auto px-6 pt-16 pb-20 md:pt-20 md:pb-28">
     <div class="flex flex-col-reverse md:flex-row items-center gap-10 md:gap-16">
 
       <!-- 좌측: 텍스트 블록 -->
@@ -71,6 +72,7 @@ const hashtags = ["#문제해결", "#동기설계", "#0→1 실행", "#국제협
         </div>
       </div>
     </div>
+  </div>
   </section>
 
   <!-- Selected Projects -->
@@ -95,7 +97,7 @@ const hashtags = ["#문제해결", "#동기설계", "#0→1 실행", "#국제협
   </section>
 
   <!-- About Me -->
-  <section class="fade-in-up bg-gray-50 py-20">
+  <section class="fade-in-up bg-(--color-bg-warm-deep) py-20">
     <div class="max-w-5xl mx-auto px-6">
       <h2 class="text-xl font-bold text-gray-900 mb-5">About Me</h2>
       <p class="text-gray-600 leading-relaxed max-w-lg mb-8">
@@ -106,7 +108,7 @@ const hashtags = ["#문제해결", "#동기설계", "#0→1 실행", "#국제협
       <!-- 해시태그 칩 -->
       <div class="flex flex-wrap gap-2.5 mb-10">
         {hashtags.map((tag) => (
-          <span class="inline-flex items-center px-3 py-1.5 bg-white border border-gray-200 rounded-full text-sm text-gray-600 font-medium">
+          <span class="inline-flex items-center px-3 py-1.5 bg-(--color-bg-warm) border border-[#D9D0C5] rounded-full text-sm text-gray-600 font-medium">
             {tag}
           </span>
         ))}
