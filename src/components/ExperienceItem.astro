@@ -1,35 +1,63 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import { render } from "astro:content";
 
 interface Props {
   entry: CollectionEntry<"experience">;
 }
 
 const { entry } = Astro.props;
-const { title, period, org, description, category, current } = entry.data;
+const { title, period, org, category, current } = entry.data;
+const { Content } = await render(entry);
+
+const tagStyle: Record<string, string> = {
+  "학교/학술":      "bg-blue-50 text-blue-700",
+  "동아리/대외활동": "bg-emerald-50 text-emerald-700",
+  "국제 활동":      "bg-sky-50 text-sky-700",
+  "인턴/실무":      "bg-amber-50 text-amber-700",
+  "교육과정":       "bg-violet-50 text-violet-700",
+};
 ---
 
-<li class="ml-6 group" data-category={category}>
-  <!-- 타임라인 도트 -->
-  <span class="absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full bg-white border-2 border-gray-200">
-    <span class={`h-2.5 w-2.5 rounded-full transition-colors ${current ? "bg-accent" : "bg-gray-300 group-hover:bg-accent"}`} />
-  </span>
+<li class="flex items-start" data-category={category}>
 
-  <!-- 카테고리 태그 + 진행 중 뱃지 -->
-  <div class="flex flex-wrap items-center gap-2 mb-1.5">
-    <span class="px-2 py-0.5 bg-gray-100 text-xs font-medium text-gray-500 rounded">
-      {category}
-    </span>
-    {current && (
-      <span class="px-2 py-0.5 bg-blue-50 text-accent text-xs font-medium rounded">진행 중</span>
-    )}
+  <!-- 날짜 열: 데스크탑만 표시 -->
+  <div class="hidden sm:block w-32 shrink-0 text-right pr-4 pt-5 text-sm text-gray-400 leading-snug">
+    {period ?? ""}
   </div>
 
-  <!-- 항목 정보 -->
-  <h3 class="text-base font-semibold text-gray-900 mb-0.5">{title}</h3>
-  {period && <time class="text-xs text-gray-400">{period}</time>}
-  {org && <p class="text-xs text-gray-500 mt-0.5">{org}</p>}
-  {description && <p class="text-xs text-gray-500 mt-0.5">{description}</p>}
+  <!-- 점 열 -->
+  <div class="w-4 shrink-0 flex justify-center pt-5">
+    <div class={`w-2.5 h-2.5 rounded-full z-10 relative ${current ? "bg-accent" : "bg-gray-800"}`}></div>
+  </div>
 
-  <!-- TODO: PM 관점 어필 포인트 1~2줄 (Phase 3에서 작성) (ROADMAP §2.2 Experience) -->
+  <!-- 카드 열 -->
+  <div class="flex-1 pl-4 pb-6">
+    <!-- 모바일 전용 날짜 -->
+    {period && <div class="sm:hidden text-xs text-gray-400 mb-2">{period}</div>}
+
+    <div class="bg-white border border-gray-200 rounded-2xl p-5 sm:p-6 relative">
+      <!-- 카테고리 태그 (우상단) -->
+      <div class="absolute top-4 right-4 flex flex-wrap gap-1.5 justify-end">
+        <span class={`px-2 py-0.5 text-xs font-medium rounded ${tagStyle[category] ?? "bg-gray-100 text-gray-600"}`}>
+          {category}
+        </span>
+        {current && (
+          <span class="px-2 py-0.5 bg-blue-50 text-accent text-xs font-medium rounded">진행 중</span>
+        )}
+      </div>
+
+      <!-- 제목 -->
+      <h3 class="text-base sm:text-lg font-bold text-gray-900 mb-1 pr-28 leading-snug">{title}</h3>
+
+      <!-- 기관명 -->
+      {org && <p class="text-xs text-gray-400 mb-3">{org}</p>}
+
+      <!-- 본문 (MDX body) -->
+      <div class="text-sm text-gray-600 leading-relaxed prose prose-sm max-w-none">
+        <Content />
+      </div>
+    </div>
+  </div>
+
 </li>
