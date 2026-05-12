@@ -10,15 +10,15 @@ const sorted = allExp.sort((a, b) => a.data.order - b.data.order);
 ---
 
 <BaseLayout title="Experience" description="다양한 경험을 통해 성장해왔습니다.">
-  <div class="max-w-3xl mx-auto px-6 py-20">
+  <div class="max-w-3xl mx-auto px-6 pt-8 pb-20">
 
     <h1 class="text-3xl md:text-4xl font-bold text-gray-900 leading-tight mb-4">Experience</h1>
-    <p class="text-gray-500 mb-10 text-sm leading-relaxed">
+    <p class="text-gray-500 mb-5 text-sm leading-relaxed">
       다양한 경험을 통해 성장해왔습니다.
     </p>
 
     <!-- 카테고리 필터 버튼 -->
-    <div class="flex flex-wrap gap-2 mb-14">
+    <div class="flex flex-wrap gap-2 mb-6">
       <button
         data-filter="전체"
         class="px-3 py-1 rounded-full text-xs font-medium transition-colors cursor-pointer bg-gray-900 text-white"
@@ -39,7 +39,7 @@ const sorted = allExp.sort((a, b) => a.data.order - b.data.order);
     <div class="relative">
       <!-- 세로선: 모바일 left=0.5rem, 데스크탑 left=8.5rem -->
       <div class="absolute top-0 bottom-0 w-px bg-gray-200 left-[0.5rem] sm:left-[8.5rem]"></div>
-      <ol id="exp-list" class="fade-in-up space-y-6 list-none m-0 p-0">
+      <ol id="exp-list" class="space-y-6 list-none m-0 p-0">
         {sorted.map((entry) => <ExperienceItem entry={entry} />)}
       </ol>
     </div>
