@@ -41,7 +41,7 @@ const photoPos = [
 ---
 
 <BaseLayout
-  title="APYE Korea 2018 | Lyn Portfolio"
+  title="APYE Korea | Lyn Portfolio"
   description="퍼실리테이터로서 팀의 협업과 문제 해결 과정을 이끌었습니다."
 >
 
@@ -65,7 +65,7 @@ const photoPos = [
       <!-- Left -->
       <div class="flex flex-col h-full">
         <p class="text-[11px] tracking-widest text-blue-300 uppercase mb-4">Impact · 사회혁신 · 청년 리더십</p>
-        <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-2">APYE Korea 2018</h1>
+        <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-2">APYE Korea</h1>
         <p class="text-blue-200 text-base mb-3">Asia Pacific Youth Exchange</p>
         <p class="text-white/85 text-sm md:text-[15px] leading-relaxed max-w-xl">
           아시아·태평양 청년들과 함께 SDGs 기반의 지역 문제를 발굴하고<br />
@@ -474,29 +474,18 @@ const photoPos = [
         </div>
       </section>
 
-      <!-- 08 방법론 & 사용 도구 -->
+      <!-- 08 사용 도구 & 방법론 -->
       <section>
         <p class="inline-flex items-center gap-1.5 text-[11px] font-bold tracking-widest uppercase mb-4">
           <span class="text-blue-600 border-b-2 border-blue-500 pb-0.5">08</span>
-          <span class="text-gray-500 ml-1">방법론 & 사용 도구</span>
+          <span class="text-gray-500 ml-1">사용 도구 & 방법론</span>
         </p>
         <div class="grid grid-cols-2 gap-8">
-          <!-- 방법론 -->
-          <div class="flex flex-col">
-            <p class="text-xs font-bold text-gray-900 mb-3">방법론</p>
-            <div class="flex-1 flex items-center">
-              <div class="flex flex-wrap gap-2">
-                {methods.map((tag) => (
-                  <span class="rounded-full px-3 py-1.5 border border-blue-200 bg-white text-blue-700 text-xs">{tag}</span>
-                ))}
-              </div>
-            </div>
-          </div>
-          <!-- 사용 도구 -->
-          <div class="flex flex-col">
+          <!-- 사용 도구 (좌) -->
+          <div class="flex flex-col border border-gray-200 rounded-2xl bg-white p-5">
             <p class="text-xs font-bold text-gray-900 mb-3">사용 도구</p>
             <div class="flex-1 flex items-center">
-            <ul class="space-y-2.5 w-full">
+            <ul class="space-y-1.5 w-full">
               {tools.map((tool, i) => (
                 <li class="flex items-center gap-2.5">
                   <div class="w-6 h-6 rounded-md bg-blue-50 flex items-center justify-center shrink-0">
@@ -531,6 +520,17 @@ const photoPos = [
                 </li>
               ))}
             </ul>
+            </div>
+          </div>
+          <!-- 방법론 (우) -->
+          <div class="flex flex-col border border-gray-200 rounded-2xl bg-white p-5">
+            <p class="text-xs font-bold text-gray-900 mb-3">방법론</p>
+            <div class="flex-1 flex items-center">
+              <div class="flex flex-wrap gap-x-2 gap-y-3">
+                {methods.map((tag) => (
+                  <span class="rounded-full px-3 py-1.5 border border-blue-200 bg-white text-blue-700 text-xs">{tag}</span>
+                ))}
+              </div>
             </div>
           </div>
         </div>
