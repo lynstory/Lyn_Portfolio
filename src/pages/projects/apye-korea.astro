@@ -480,20 +480,23 @@ const photoPos = [
           <span class="text-blue-600 border-b-2 border-blue-500 pb-0.5">08</span>
           <span class="text-gray-500 ml-1">방법론 & 사용 도구</span>
         </p>
-        <div class="grid grid-cols-2 gap-8 items-center">
+        <div class="grid grid-cols-2 gap-8">
           <!-- 방법론 -->
-          <div>
+          <div class="flex flex-col">
             <p class="text-xs font-bold text-gray-900 mb-3">방법론</p>
-            <div class="flex flex-wrap gap-2">
-              {methods.map((tag) => (
-                <span class="rounded-full px-3 py-1.5 border border-blue-200 bg-white text-blue-700 text-xs">{tag}</span>
-              ))}
+            <div class="flex-1 flex items-center">
+              <div class="flex flex-wrap gap-2">
+                {methods.map((tag) => (
+                  <span class="rounded-full px-3 py-1.5 border border-blue-200 bg-white text-blue-700 text-xs">{tag}</span>
+                ))}
+              </div>
             </div>
           </div>
           <!-- 사용 도구 -->
-          <div>
+          <div class="flex flex-col">
             <p class="text-xs font-bold text-gray-900 mb-3">사용 도구</p>
-            <ul class="space-y-2.5">
+            <div class="flex-1 flex items-center">
+            <ul class="space-y-2.5 w-full">
               {tools.map((tool, i) => (
                 <li class="flex items-center gap-2.5">
                   <div class="w-6 h-6 rounded-md bg-blue-50 flex items-center justify-center shrink-0">
@@ -528,6 +531,7 @@ const photoPos = [
                 </li>
               ))}
             </ul>
+            </div>
           </div>
         </div>
       </section>
