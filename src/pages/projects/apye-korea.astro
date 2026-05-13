@@ -6,7 +6,7 @@ const days = [
   { n: 1, line1: "Team Building", line2: "& SDGs 교육", desc: "팀 빌딩, 프로그램 소개,<br />SDGs 및 사회혁신 이해" },
   { n: 2, line1: "Design Thinking", line2: "워크숍", desc: "디자인씽킹 방법론 학습,<br />문제 정의 및 공감하기" },
   { n: 3, line1: "Local Immersion", line2: "(현장 조사)", desc: "성동구 지역 탐방,<br />이해관계자 인터뷰, 문제 발견" },
-  { n: 4, line1: "Ideation &", line2: "Prototyping", desc: "아이디어 브레인스토밍,<br />솔루션 구체화 및 프로토타입 제작" },
+  { n: 4, line1: "Ideation &", line2: "Prototyping", desc: "아이디어 브레인스토밍, 솔루션 구체화 및 프로토타입 제작" },
   { n: 5, line1: "Symposium", line2: "(최종 발표)", desc: "팀별 솔루션 발표 및<br />전문가 피드백" },
   { n: 6, line1: "왕십리 광장", line2: "시민 캠페인", desc: "솔루션을 시민들과 공유하고<br />인식 개선 캠페인 진행" },
 ];
@@ -336,7 +336,7 @@ const photoPos = [
             <div class="p-4 flex-1">
               <p class="text-[10px] text-blue-500 font-semibold tracking-wider mb-1">Day {day.n}</p>
               <p class="text-sm font-bold text-gray-900 leading-snug mb-2">{day.line1}<br />{day.line2}</p>
-              <p class="text-[11px] text-gray-500 leading-relaxed">{day.desc}</p>
+              <p class="text-[11px] text-gray-500 leading-relaxed" set:html={day.desc}></p>
             </div>
             <div class="h-28 shrink-0 overflow-hidden">
               <img src={`${base}projects/kakao-ansan.png`} alt="" class="w-full h-full object-cover" />
