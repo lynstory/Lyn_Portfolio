@@ -60,19 +60,24 @@ const photoPos = [
     <img src={`${base}projects/apye-korea.png`} alt="" class="absolute inset-0 w-full h-full object-cover opacity-40 select-none pointer-events-none" />
     <div class="absolute inset-0 bg-gradient-to-br from-black/85 via-black/60 to-black/30"></div>
 
-    <div class="relative max-w-6xl mx-auto px-6 py-14 grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-8 items-start">
+    <div class="relative max-w-6xl mx-auto px-6 py-14 grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-8">
 
       <!-- Left -->
-      <div>
+      <div class="flex flex-col h-full">
         <p class="text-[11px] tracking-widest text-blue-300 uppercase mb-4">Impact · 사회혁신 · 청년 리더십</p>
         <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-2">APYE Korea 2018</h1>
         <p class="text-blue-200 text-base mb-3">Asia Pacific Youth Exchange</p>
+        <p class="text-white/85 text-sm md:text-[15px] leading-relaxed max-w-xl">
+          아시아·태평양 청년들과 함께 SDGs 기반의 지역 문제를 발굴하고<br />
+          사회혁신 솔루션을 제안한 9박 10일의 국제 액션러닝 프로그램
+        </p>
+        <div class="border-t border-white/15 my-5 max-w-xl"></div>
         <p class="text-white/70 text-sm leading-relaxed max-w-xl">
           청년들이 모여 SDGs를 기반으로 지역 문제를 탐색하고, 디자인씽킹으로 솔루션을 만들어 시민에게 직접 제안한 국제 사회혁신 프로그램입니다.
         </p>
 
         <!-- 메타 row -->
-        <div class="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div class="mt-auto pt-8 grid grid-cols-2 sm:grid-cols-4 gap-4">
           <div class="flex items-center gap-3">
             <div class="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center shrink-0">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-blue-300">
