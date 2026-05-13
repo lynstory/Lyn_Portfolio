@@ -438,11 +438,11 @@ const headerBgs = ["bg-green-50", "bg-amber-50", "bg-purple-50"];
 
       <!-- 06 임팩트 -->
       <section class="lg:px-6 pt-8 sm:pt-0 pb-8 sm:pb-0">
-        <div class="flex items-center gap-2 mb-5">
+        <div class="flex items-center gap-2 mb-3">
           <span class="text-xs font-bold text-green-600 tracking-widest border-b-2 border-green-500 pb-0.5">06</span>
           <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">임팩트</span>
         </div>
-        <div class="space-y-5">
+        <div class="space-y-2">
           {[
             { num: "200+", label: "시민 참여 수" },
             { num: "85%",  label: "공정 응답 비율" },
@@ -450,16 +450,16 @@ const headerBgs = ["bg-green-50", "bg-amber-50", "bg-purple-50"];
             { num: "1,000+", label: "SNS 도달 수" },
           ].map(({ num, label }) => (
             <div>
-              <div class="text-3xl font-bold text-green-700 leading-none">{num}</div>
-              <div class="text-xs text-gray-500 mt-0.5">{label}</div>
+              <div class="text-xl font-bold text-green-700 leading-none">{num}</div>
+              <div class="text-xs text-gray-500 mt-0">{label}</div>
             </div>
           ))}
           <p class="text-xs text-gray-500 leading-relaxed pt-2 border-t border-gray-100">
             시민들이 즐겁게 참여하고, 지역에 대한 관심과 공감학적인 인식이 높아졌습니다.
           </p>
           <!-- 참여 상승 추세 스파크라인 -->
-          <div class="pt-3">
-            <svg viewBox="0 0 160 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-12">
+          <div class="pt-2">
+            <svg viewBox="0 0 160 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-8">
               <!-- 면적 채우기 -->
               <path
                 d="M0 44 L32 36 L64 26 L96 18 L128 10 L160 4 L160 48 L0 48 Z"
