@@ -28,12 +28,12 @@ const citizenFlow = [
 ];
 
 const tools = [
-  { name: "Figma",        sub: "디자인 및 프로토타입", color: "bg-[#F24E1E]", letter: "F" },
-  { name: "Miro",         sub: "아이디어 발산",         color: "bg-[#FFD02F]", letter: "M", dark: true },
-  { name: "Notion",       sub: "문서화 및 일정 관리",   color: "bg-gray-900",  letter: "N" },
-  { name: "Google Forms", sub: "설문 및 데이터 수집",   color: "bg-[#7B4BD1]", letter: "G" },
-  { name: "Instagram",    sub: "홍보 및 소통",           color: "bg-[#E1306C]", letter: "in" },
-  { name: "Canva",        sub: "홍보물 제작",            color: "bg-[#00C4CC]", letter: "C" },
+  { name: "Figma",        sub: "디자인 및 프로토타입", slug: "figma" },
+  { name: "Miro",         sub: "아이디어 발산",         slug: "miro" },
+  { name: "Notion",       sub: "문서화 및 일정 관리",   slug: "notion" },
+  { name: "Google Forms", sub: "설문 및 데이터 수집",   slug: "googleforms" },
+  { name: "Instagram",    sub: "홍보 및 소통",           slug: "instagram" },
+  { name: "Canva",        sub: "홍보물 제작",            slug: "canva" },
 ];
 
 const headerBgs = ["bg-green-50", "bg-amber-50", "bg-purple-50"];
@@ -518,21 +518,21 @@ const headerBgs = ["bg-green-50", "bg-amber-50", "bg-purple-50"];
           <span class="text-xs font-bold text-green-600 tracking-widest border-b-2 border-green-500 pb-0.5">08</span>
           <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">배운 점</span>
         </div>
-        <div class="space-y-4">
+        <div class="grid grid-cols-3 gap-3">
           {[
             { icon: "M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z", title: "사람 중심으로 바라보기", desc: "현장에서 직접 느끼는 경험이 가장 강력한 인사이트의 원천이었다." },
             { icon: "M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z", title: "협업의 힘", desc: "다양한 배경을 가진 팀원들과 역할을 나누며 시너지를 만들었다." },
             { icon: "M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84", title: "실행이 만드는 변화", desc: "작은 아이디어도 실행하면 실제 변화를 만들 수 있음을 경험했다." },
           ].map(({ icon, title, desc }) => (
-            <div class="flex gap-4 items-start p-4 bg-gray-50 rounded-xl">
-              <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center shrink-0">
+            <div class="flex flex-col gap-3 p-4 bg-gray-50 rounded-xl">
+              <div class="w-9 h-9 rounded-full bg-green-100 flex items-center justify-center shrink-0">
                 <svg class="w-4 h-4 text-green-700" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" d={icon} />
                 </svg>
               </div>
               <div>
                 <p class="text-sm font-semibold text-gray-900 mb-1">{title}</p>
-                <p class="text-xs text-gray-500 leading-relaxed">{desc}</p>
+                <p class="text-xs text-gray-400 leading-relaxed">{desc}</p>
               </div>
             </div>
           ))}
@@ -545,11 +545,16 @@ const headerBgs = ["bg-green-50", "bg-amber-50", "bg-purple-50"];
           <span class="text-xs font-bold text-green-600 tracking-widest border-b-2 border-green-500 pb-0.5">09</span>
           <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">사용 도구 및 방법</span>
         </div>
-        <div class="grid grid-cols-3 gap-4">
-          {tools.map(({ name, sub, color, letter, dark }) => (
+        <div class="grid grid-cols-6 gap-3">
+          {tools.map(({ name, sub, slug }) => (
             <div class="flex flex-col items-center text-center gap-2">
-              <div class={`w-12 h-12 rounded-xl ${color} flex items-center justify-center shadow-sm`}>
-                <span class={`font-bold text-sm ${dark ? "text-gray-900" : "text-white"}`}>{letter}</span>
+              <div class="w-12 h-12 rounded-xl bg-white border border-gray-100 shadow-sm flex items-center justify-center">
+                <img
+                  src={`https://cdn.simpleicons.org/${slug}`}
+                  class="w-7 h-7"
+                  alt={name}
+                  loading="lazy"
+                />
               </div>
               <div>
                 <p class="text-xs font-semibold text-gray-800">{name}</p>
