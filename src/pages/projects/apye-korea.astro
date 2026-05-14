@@ -339,12 +339,12 @@ const photoPos = [
         {days.map((day) => (
           <div class="border border-gray-100 rounded-xl bg-white overflow-hidden flex flex-col">
             <div class="p-4 flex-1">
-              <p class="text-[10px] text-blue-500 font-semibold tracking-wider mb-1">Day {day.n}</p>
+              <p class="text-[10px] text-blue-500 font-semibold tracking-wider mb-1">Step {day.n}</p>
               <p class="text-sm font-bold text-gray-900 leading-snug mb-2">{day.line1}<br />{day.line2}</p>
               <p class="text-[11px] text-gray-500 leading-relaxed" set:html={day.desc}></p>
             </div>
             <div class="h-28 shrink-0 overflow-hidden">
-              <img src={`${base}projects/kakao-ansan.png`} alt="" class="w-full h-full object-cover" />
+              <img src={`${base}projects/apye-korea/step${day.n}.png`} alt="" class="w-full h-full object-cover" />
             </div>
           </div>
         ))}
