@@ -497,9 +497,9 @@ const headerBgs = ["bg-green-50", "bg-amber-50", "bg-purple-50"];
         <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">현장 스케치</span>
       </div>
       <div class="grid grid-cols-2 lg:grid-cols-6 gap-1.5">
-        {["object-top", "object-right", "object-center", "object-left", "object-bottom", "object-center"].map(pos => (
-          <div class="h-40 overflow-hidden rounded-lg">
-            <img src={img("kakao-ansan.png")} alt="" class={`w-full h-full object-cover ${pos}`} />
+        {["sketch-1.png", "sketch-2.png", "sketch-3.png", "sketch-4.png", "sketch-5.png", "sketch-6.png"].map((name, i) => (
+          <div class="h-40 overflow-hidden rounded-lg flex items-center justify-center bg-gray-50">
+            <img src={img(`kakao-ansan-impact/${name}`)} alt={`현장 스케치 ${i+1}`} class="h-full w-auto" />
           </div>
         ))}
       </div>
