@@ -394,9 +394,30 @@ const photoPos = [
           class="flex-1 grid grid-cols-4 gap-1.5"
           style="grid-template-rows: 1fr 1fr 0.65fr; min-height: 360px;"
         >
-          <!-- A: col 1-2, row 1-2 (대형 단체사진) -->
-          <div class="col-span-2 row-span-2 overflow-hidden rounded-lg">
-            <img src={`${base}projects/kakao-ansan.png`} alt="" class="w-full h-full object-cover object-center" />
+          <!-- A: col 1-2, row 1-2 (YouTube 영상 — 클릭 시 인-페이지 재생) -->
+          <div
+            id="apye-video-facade"
+            class="relative col-span-2 row-span-2 overflow-hidden rounded-lg cursor-pointer group"
+            data-video-id="x2HKjpZpkZk"
+            role="button"
+            aria-label="현장 활동 영상 재생"
+            tabindex="0"
+          >
+            <img
+              src={`${base}projects/apye-korea/group-2019.jpg`}
+              alt="2019 APYE Korea 단체사진"
+              class="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-[1.02]"
+            />
+            <!-- 어두운 오버레이 -->
+            <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors"></div>
+            <!-- Play 아이콘 (흰 원 + 어두운 삼각형) -->
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/90 shadow-lg flex items-center justify-center group-hover:bg-white transition-colors">
+                <svg viewBox="0 0 24 24" class="w-7 h-7 sm:w-8 sm:h-8 text-gray-900 ml-1" fill="currentColor">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </div>
+            </div>
           </div>
           <!-- B: col 3, row 1 -->
           <div class="overflow-hidden rounded-md">
@@ -540,3 +561,30 @@ const photoPos = [
   </div>
 
 </BaseLayout>
+
+<script>
+  const facade = document.getElementById('apye-video-facade');
+  if (facade) {
+    const play = () => {
+      const videoId = (facade as HTMLElement).dataset.videoId;
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1`;
+      iframe.title = 'APYE Korea 현장 활동 영상';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      iframe.allowFullscreen = true;
+      iframe.className = 'w-full h-full';
+      iframe.style.border = '0';
+      facade.replaceChildren(iframe);
+      facade.removeAttribute('role');
+      facade.removeAttribute('tabindex');
+      facade.classList.remove('cursor-pointer', 'group');
+    };
+    facade.addEventListener('click', play);
+    facade.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        play();
+      }
+    });
+  }
+</script>
