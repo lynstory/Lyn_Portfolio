@@ -272,24 +272,24 @@ const headerBgs = ["bg-green-50", "bg-amber-50", "bg-purple-50"];
             title: "임팩트 부트캠프 (3일)",
             org: "카카오 데이터센터 안산",
             bullets: ["지역 문제 발견 및 현장 탐방", "사용자 인터뷰 및 공감하기", "디자인씽킹 워크숍 및 아이디어 도출"],
-            images: ["kakao-ansan.png", "kakao-ansan.png"],
-            positions: ["object-top", "object-center"],
+            image: "kakao-ansan-impact/bootcamp.png",
+            imageClass: "object-cover object-center",
           },
           {
             date: "2024.09 – 11",
             title: "IC-PBL 수업 연계 (학기 중)",
             org: "한양대학교",
             bullets: ["추자팀 팀 회의 및 아이디어 고도화", "캠페인 콘셉트 선정 및 역할 분담", "콘텐츠·운영 시나리오·홍보 전략 수립", "리허설 및 운영 준비"],
-            images: ["kakao-ansan.png", "kakao-ansan.png"],
-            positions: ["object-center", "object-bottom"],
+            image: "kakao-ansan-impact/icpbl.png",
+            imageClass: "object-cover object-center",
           },
           {
             date: "2024.11.23",
             title: "시민 참여 버스킹 이벤트",
             org: "안산 문화광장",
             bullets: ["라이브 공연 및 참여형 부스 운영", "시민 참여 미션, 설문, 인터뷰 진행", "현장 피드백 수집 및 실시간 개선"],
-            images: ["kakao-ansan.png", "kakao-ansan.png"],
-            positions: ["object-bottom", "object-top"],
+            image: "kakao-ansan-impact/busking.png",
+            imageClass: "object-contain object-center",
           },
         ].map((card, i) => (
           <>
@@ -315,14 +315,10 @@ const headerBgs = ["bg-green-50", "bg-amber-50", "bg-purple-50"];
                 </ul>
               </div>
 
-              <!-- ③ 하단: 이미지 2장 나란히 -->
-              <div class="grid grid-cols-2 h-36">
-                {card.images.map((imgName, j) => (
-                  <div class="overflow-hidden">
-                    <img src={img(imgName)} alt={`${card.title} ${j+1}`}
-                         class={`w-full h-full object-cover ${card.positions[j]}`} />
-                  </div>
-                ))}
+              <!-- ③ 하단: 이미지 1장 -->
+              <div class="h-36 overflow-hidden">
+                <img src={img(card.image)} alt={card.title}
+                     class={`w-full h-full ${card.imageClass}`} />
               </div>
 
             </div>
@@ -421,10 +417,10 @@ const headerBgs = ["bg-green-50", "bg-amber-50", "bg-purple-50"];
         <!-- 사진 2개 -->
         <div class="grid grid-cols-2 gap-1.5 mb-4">
           <div class="h-20 overflow-hidden rounded-lg">
-            <img src={img("kakao-ansan.png")} alt="" class="w-full h-full object-cover object-left" />
+            <img src={img("kakao-ansan-impact/flow-left.png")} alt="글로벌 버스킹 비주얼" class="w-full h-full object-cover object-center" />
           </div>
           <div class="h-20 overflow-hidden rounded-lg">
-            <img src={img("kakao-ansan.png")} alt="" class="w-full h-full object-cover object-right" />
+            <img src={img("kakao-ansan-impact/flow-right.png")} alt="외국인-내국인 화합 그래프" class="w-full h-full object-cover object-center" />
           </div>
         </div>
         <!-- 인용 -->
