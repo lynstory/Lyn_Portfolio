@@ -573,24 +573,10 @@ const photoPos = [
       iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
       iframe.className = 'w-full h-full';
       iframe.style.border = '0';
-
-      // YouTube 타이틀 오버레이 가림용 상단 그라디언트 커버 (5초간 표시)
-      const titleCover = document.createElement('div');
-      titleCover.className = 'absolute inset-x-0 top-0 pointer-events-none transition-opacity duration-500 ease-out';
-      titleCover.style.height = '30%';
-      titleCover.style.background = 'linear-gradient(to bottom, rgb(0,0,0) 0%, rgba(0,0,0,0.95) 55%, rgba(0,0,0,0) 100%)';
-      titleCover.style.opacity = '1';
-
-      facade.replaceChildren(iframe, titleCover);
+      facade.replaceChildren(iframe);
       facade.removeAttribute('role');
       facade.removeAttribute('tabindex');
       facade.classList.remove('cursor-pointer', 'group');
-
-      // 5초 뒤 페이드 아웃 → 0.5초 후 DOM에서 제거
-      setTimeout(() => {
-        titleCover.style.opacity = '0';
-        setTimeout(() => titleCover.remove(), 500);
-      }, 5000);
     };
     facade.addEventListener('click', play);
     facade.addEventListener('keydown', (e) => {
