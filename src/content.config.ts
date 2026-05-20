@@ -17,6 +17,7 @@ const projects = defineCollection({
     category: z.enum(PROJECTS_CATEGORIES),
     tags: z.array(z.string()).default([]),
     image: z.string().optional(), // public/projects/ 하위 파일명 (예: "kimst.jpg")
+    award: z.string().optional(), // 수상 내역 (예: "2020 창업 아이디어톤 최우수상")
     date: z.coerce.date(),
     featured: z.boolean().default(false), // ROADMAP §7.2 — 최대 3개
     highlight: z.boolean().default(false), // projects 페이지 대형 Featured 카드
@@ -41,19 +42,4 @@ const experience = defineCollection({
   }),
 });
 
-// Side Quests 컬렉션 (ROADMAP §2.2 Side Quests)
-// 톤: 더 개인적, 솔직, 사업가 마인드 OK (ROADMAP §3)
-const sideQuests = defineCollection({
-  loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "./src/content/side-quests" }),
-  schema: z.object({
-    title: z.string(),
-    period: z.string(),
-    tag: z.string(),
-    summary: z.string(),
-    date: z.coerce.date().optional(),
-    order: z.number().default(99),
-    current: z.boolean().default(false),
-  }),
-});
-
-export const collections = { projects, experience, sideQuests };
+export const collections = { projects, experience };
