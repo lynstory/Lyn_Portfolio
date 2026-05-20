@@ -191,33 +191,37 @@ const milestones = [
       </div>
 
       <!-- 관심사 & 비전 카드 -->
-      <div class="relative rounded-2xl overflow-hidden bg-[#F5F2EC]" style="min-height: 340px;">
-        <!-- 배경 이미지: 우하단 고정 -->
-        <img
-          src={`${base}vision.png`}
-          alt=""
-          aria-hidden="true"
-          class="absolute inset-0 w-full h-full object-contain object-right-bottom"
-        />
-        <!-- 텍스트 오버레이: 좌상단 -->
-        <div class="absolute top-0 left-0 p-7 w-[58%] z-10">
-          <h3 class="font-bold text-gray-900 text-lg mb-4">관심사 & 비전</h3>
-          <p class="text-sm text-gray-700 leading-relaxed">
-            지금 가장 시간을 쏟는 영역은 AI 기반 PM 역량과
-            사람 행동 설계입니다.
-            기술과 사람의 의사결정이 만나는 지점을 탐구하며,
-            길게는 사람들의 삶에 진정한 가치를 주는 공간
-            '행복학교'를 구상하고 있습니다.
+      <div class="relative rounded-2xl overflow-hidden bg-[#F5F2EC] flex flex-col" style="min-height: 340px;">
+        <!-- 상단: 텍스트 + 배경 이미지 -->
+        <div class="relative flex-1">
+          <img
+            src={`${base}vision.png`}
+            alt=""
+            aria-hidden="true"
+            class="absolute inset-0 w-full h-full object-contain object-right-bottom"
+          />
+          <div class="absolute top-0 left-0 p-7 w-[58%] z-10">
+            <h3 class="font-bold text-gray-900 text-lg mb-4">관심사 & 비전</h3>
+            <p class="text-sm text-gray-700 leading-relaxed">
+              지금 가장 시간을 쏟는 영역은 AI 기반 PM 역량과
+              사람 행동 설계입니다.
+              기술과 사람의 의사결정이 만나는 지점을 탐구하며,
+              길게는 사람들의 삶에 진정한 가치를 주는 공간
+              '행복학교'를 구상하고 있습니다.
+            </p>
+          </div>
+        </div>
+        <!-- 하단: 인라인 배너 (border-only) -->
+        <div class="relative z-10 border-t border-gray-200 px-7 py-4 flex items-center justify-between gap-4">
+          <p class="text-sm text-gray-700">
+            AI 기반 PM 워크플로우를 직접 설계·실험 중
           </p>
-          <p class="text-sm text-gray-700 leading-relaxed mt-3">
-            현재 AI 기반 PM 워크플로우를 직접 설계·실험하고 있습니다.{" "}
-            <a
-              href={`${base}projects/ai-pm-experiment`}
-              class="font-medium text-gray-900 hover:text-accent transition-colors underline underline-offset-2"
-            >
-              AI 기반 PM 실험 보기 →
-            </a>
-          </p>
+          <a
+            href={`${base}projects/ai-pm-experiment`}
+            class="text-sm font-semibold text-[#3B5BA9] hover:underline whitespace-nowrap shrink-0"
+          >
+            AI 기반 PM 실험 보기 →
+          </a>
         </div>
       </div>
 
