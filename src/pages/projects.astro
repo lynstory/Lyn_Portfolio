@@ -118,14 +118,8 @@ const selectedProjects = allProjects
 
   <!-- 4. Selected Projects -->
   <section class="fade-in-up max-w-5xl mx-auto px-6 mb-14">
-    <div class="flex items-center justify-between mb-6">
+    <div class="mb-6">
       <h2 class="text-base font-bold text-gray-900">Selected Projects</h2>
-      <a
-        href="#"
-        class="text-sm text-gray-500 hover:text-gray-900 transition-colors flex items-center gap-1"
-      >
-        전체 프로젝트 보기 <span aria-hidden="true">→</span>
-      </a>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
       {selectedProjects.map((entry) => (
@@ -187,85 +181,6 @@ const selectedProjects = allProjects
     </div>
   </section>
 
-  <!-- 6. 더 많은 프로젝트 -->
-  <section class="fade-in-up max-w-5xl mx-auto px-6 mb-20">
-    <h2 class="text-base font-bold text-gray-900 mb-6">더 많은 프로젝트</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-
-      <a href={`${base}side-quests/moojigaeng`} class="flex items-center gap-4 border border-gray-200 rounded-xl p-4 bg-white hover:border-gray-400 transition-colors group">
-        <div class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center shrink-0">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" class="w-5 h-5 text-gray-600">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 21c-4.418 0-8-2.239-8-5 0-1.524 1.023-2.894 2.666-3.87M12 21c4.418 0 8-2.239 8-5 0-1.524-1.023-2.894-2.666-3.87M12 21V9m0 0c0-2.21-1.343-4-3-4S6 6.79 6 9m6 0c0-2.21 1.343-4 3-4s3 1.79 3 4M6.5 5.5C6.5 4.12 7.12 3 8 3s1.5 1.12 1.5 2.5M17.5 5.5C17.5 4.12 16.88 3 16 3s-1.5 1.12-1.5 2.5" />
-          </svg>
-        </div>
-        <div class="flex-1 min-w-0">
-          <p class="font-medium text-gray-900 text-sm">무지개냥</p>
-          <p class="text-xs text-gray-500 truncate">반려동물 커뮤니티 서비스 기획</p>
-        </div>
-        <div class="flex items-center gap-1.5 shrink-0 text-sm text-gray-400">
-          <span>2023</span>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 group-hover:translate-x-0.5 transition-transform">
-            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-          </svg>
-        </div>
-      </a>
-
-      <a href={`${base}side-quests/ai-pm-experiment`} class="flex items-center gap-4 border border-gray-200 rounded-xl p-4 bg-white hover:border-gray-400 transition-colors group">
-        <div class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center shrink-0">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" class="w-5 h-5 text-gray-600">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z" />
-          </svg>
-        </div>
-        <div class="flex-1 min-w-0">
-          <p class="font-medium text-gray-900 text-sm">AI 기반 PM 실험</p>
-          <p class="text-xs text-gray-500 truncate">AI 도구 활용 PM 워크플로우 실험</p>
-        </div>
-        <div class="flex items-center gap-1.5 shrink-0 text-sm text-gray-400">
-          <span>2024</span>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 group-hover:translate-x-0.5 transition-transform">
-            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-          </svg>
-        </div>
-      </a>
-
-      <a href={`${base}side-quests`} class="flex items-center gap-4 border border-gray-200 rounded-xl p-4 bg-white hover:border-gray-400 transition-colors group">
-        <div class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center shrink-0">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" class="w-5 h-5 text-gray-600">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-          </svg>
-        </div>
-        <div class="flex-1 min-w-0">
-          <p class="font-medium text-gray-900 text-sm">사이드 퀘스트</p>
-          <p class="text-xs text-gray-500 truncate">작은 실험으로 시작한 문제 해결 프로젝트</p>
-        </div>
-        <div class="flex items-center gap-1.5 shrink-0 text-sm text-gray-400">
-          <span>2022</span>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 group-hover:translate-x-0.5 transition-transform">
-            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-          </svg>
-        </div>
-      </a>
-
-      <a href={`${base}side-quests/zero-to-one`} class="flex items-center gap-4 border border-gray-200 rounded-xl p-4 bg-white hover:border-gray-400 transition-colors group">
-        <div class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center shrink-0">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" class="w-5 h-5 text-gray-600">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" />
-          </svg>
-        </div>
-        <div class="flex-1 min-w-0">
-          <p class="font-medium text-gray-900 text-sm">0→1 실험</p>
-          <p class="text-xs text-gray-500 truncate">좋은 아이디어는 작게라도 굴려봄</p>
-        </div>
-        <div class="flex items-center gap-1.5 shrink-0 text-sm text-gray-400">
-          <span>2023</span>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 group-hover:translate-x-0.5 transition-transform">
-            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-          </svg>
-        </div>
-      </a>
-
-    </div>
-  </section>
 
   <!-- 7. Dark CTA Footer -->
   <div class="bg-[#1a1a1a] text-white">
