@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ProjectNav from "../../components/ProjectNav.astro";
 
 export async function getStaticPaths() {
   const entries = await getCollection("projects", ({ data }) => !data.draft);
@@ -62,4 +63,5 @@ const { Content } = await render(entry);
     </div>
 
   </article>
+  <ProjectNav currentSlug={entry.id} />
 </BaseLayout>

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ProjectNav from "../../components/ProjectNav.astro";
 const base = import.meta.env.BASE_URL;
 const img = (name: string) => `${base}projects/${name}`;
 
@@ -572,5 +573,6 @@ const headerBgs = ["bg-green-50", "bg-amber-50", "bg-purple-50"];
 
     </div>
   </div>
+  <ProjectNav currentSlug="kakao-ansan-impact" />
 
 </BaseLayout>
