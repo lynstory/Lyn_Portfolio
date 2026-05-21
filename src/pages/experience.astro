@@ -58,28 +58,60 @@ const sorted = allExp.sort((a, b) => a.data.order - b.data.order);
 
 </BaseLayout>
 
-<!-- Blender/UE5 영상 모달 -->
+<!-- Blender/UE5 영상 캐러셀 모달 -->
 <dialog
   id="blender-ue5-modal"
-  class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl p-0 bg-transparent backdrop:bg-black/60 max-w-4xl w-[92vw]"
+  class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-0 bg-transparent backdrop:bg-black/60 w-[92vw] sm:w-[96vw] max-w-4xl"
   aria-label="개인 프로젝트 영상"
 >
-  <div class="relative bg-white rounded-2xl overflow-hidden">
-    <button
-      type="button"
-      data-modal-close
-      aria-label="닫기"
-      class="absolute top-3 right-3 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-white/90 hover:bg-white text-gray-700 cursor-pointer"
-    >✕</button>
-    <div class="aspect-video w-full bg-black">
-      <iframe
-        data-modal-iframe
-        src=""
-        title="개인 프로젝트 영상"
-        class="w-full h-full"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-      ></iframe>
+  <div class="relative">
+    <!-- 흰 카드: 데스크탑은 양옆 mx-14로 화살표 공간 확보 -->
+    <div class="relative bg-white rounded-2xl overflow-hidden sm:mx-14">
+      <button
+        type="button"
+        data-modal-close
+        aria-label="닫기"
+        class="absolute top-3 right-3 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-white/90 hover:bg-white text-gray-700 cursor-pointer"
+      >✕</button>
+
+      <div data-carousel-viewport class="overflow-hidden touch-pan-y">
+        <div data-carousel-track class="flex transition-transform duration-300 ease-out">
+          <div class="w-full shrink-0 aspect-video bg-black">
+            <iframe data-modal-iframe data-video-id="IpsGFjavhq0" src="" title="개인 프로젝트1" class="w-full h-full"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="w-full shrink-0 aspect-video bg-black">
+            <iframe data-modal-iframe data-video-id="5-oH4xFLu-o" src="" title="개인 프로젝트2" class="w-full h-full"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="w-full shrink-0 aspect-video bg-black">
+            <iframe data-modal-iframe data-video-id="fr4TIXOXnZw" src="" title="3D 툴 활용" class="w-full h-full"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 데스크탑 화살표 (sm 이상): 카드 양옆 absolute -->
+    <button type="button" data-carousel-prev aria-label="이전 영상"
+      class="hidden sm:flex absolute left-0 top-1/2 -translate-y-1/2 w-12 h-12 items-center justify-center rounded-full bg-white/15 hover:bg-white/25 transition-colors cursor-pointer">
+      <span class="block w-0 h-0 border-y-[8px] border-y-transparent border-r-[12px] border-r-white ml-[-2px]"></span>
+    </button>
+    <button type="button" data-carousel-next aria-label="다음 영상"
+      class="hidden sm:flex absolute right-0 top-1/2 -translate-y-1/2 w-12 h-12 items-center justify-center rounded-full bg-white/15 hover:bg-white/25 transition-colors cursor-pointer">
+      <span class="block w-0 h-0 border-y-[8px] border-y-transparent border-l-[12px] border-l-white ml-[2px]"></span>
+    </button>
+
+    <!-- 모바일 화살표 (sm 미만): 카드 아래 row -->
+    <div class="flex sm:hidden justify-center gap-8 mt-4">
+      <button type="button" data-carousel-prev aria-label="이전 영상"
+        class="w-10 h-10 flex items-center justify-center rounded-full bg-white/15 hover:bg-white/25 transition-colors cursor-pointer">
+        <span class="block w-0 h-0 border-y-[8px] border-y-transparent border-r-[12px] border-r-white ml-[-2px]"></span>
+      </button>
+      <button type="button" data-carousel-next aria-label="다음 영상"
+        class="w-10 h-10 flex items-center justify-center rounded-full bg-white/15 hover:bg-white/25 transition-colors cursor-pointer">
+        <span class="block w-0 h-0 border-y-[8px] border-y-transparent border-l-[12px] border-l-white ml-[2px]"></span>
+      </button>
     </div>
   </div>
 </dialog>
@@ -118,27 +150,74 @@ const sorted = allExp.sort((a, b) => a.data.order - b.data.order);
     btn.classList.add('bg-[#F0EBE3]', 'text-gray-600', 'hover:bg-[#E5DDD4]');
   }
 
-  // 모달 제어
+  // 캐러셀 모달 제어
   const modal = document.getElementById('blender-ue5-modal') as HTMLDialogElement | null;
-  const iframe = modal?.querySelector<HTMLIFrameElement>('[data-modal-iframe]');
+  const track = modal?.querySelector<HTMLElement>('[data-carousel-track]') ?? null;
+  const viewport = modal?.querySelector<HTMLElement>('[data-carousel-viewport]') ?? null;
+  const iframes = Array.from(modal?.querySelectorAll<HTMLIFrameElement>('[data-modal-iframe]') ?? []);
+  const prevBtns = Array.from(modal?.querySelectorAll<HTMLButtonElement>('[data-carousel-prev]') ?? []);
+  const nextBtns = Array.from(modal?.querySelectorAll<HTMLButtonElement>('[data-carousel-next]') ?? []);
+  const slideIds = iframes.map(f => f.dataset.videoId ?? '');
+  let current = 0;
+
+  const buildSrc = (id: string) => `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
+
+  function updateArrows() {
+    prevBtns.forEach(b => b.classList.toggle('invisible', current === 0));
+    nextBtns.forEach(b => b.classList.toggle('invisible', current === slideIds.length - 1));
+  }
+
+  function positionTrack(animate: boolean) {
+    if (!track) return;
+    track.style.transition = animate ? '' : 'none';
+    track.style.transform = `translateX(-${current * 100}%)`;
+    if (!animate) {
+      void track.offsetHeight;
+      track.style.transition = '';
+    }
+  }
+
+  function goTo(idx: number) {
+    if (idx < 0 || idx >= slideIds.length || idx === current) return;
+    const prev = current;
+    current = idx;
+    if (iframes[idx] && !iframes[idx].src) iframes[idx].src = buildSrc(slideIds[idx]);
+    positionTrack(true);
+    setTimeout(() => { if (iframes[prev]) iframes[prev].src = ''; }, 320);
+    updateArrows();
+  }
 
   document.querySelectorAll<HTMLButtonElement>('[data-modal-open="blender-ue5"]').forEach(btn => {
     btn.addEventListener('click', () => {
-      if (!modal || !iframe) return;
-      const videoId = btn.dataset.videoId;
-      if (!videoId) return;
-      iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+      if (!modal) return;
+      const idx = slideIds.indexOf(btn.dataset.videoId ?? '');
+      if (idx < 0) return;
+      iframes.forEach((f, i) => { f.src = i === idx ? buildSrc(slideIds[i]) : ''; });
+      current = idx;
+      positionTrack(false);
+      updateArrows();
       modal.showModal();
     });
   });
 
+  prevBtns.forEach(b => b.addEventListener('click', () => goTo(current - 1)));
+  nextBtns.forEach(b => b.addEventListener('click', () => goTo(current + 1)));
+
+  // 스와이프 (pointer = touch + mouse 통합)
+  let startX: number | null = null;
+  const THRESHOLD = 50;
+  viewport?.addEventListener('pointerdown', (e) => { startX = e.clientX; });
+  viewport?.addEventListener('pointerup', (e) => {
+    if (startX === null) return;
+    const dx = e.clientX - startX;
+    startX = null;
+    if (Math.abs(dx) < THRESHOLD) return;
+    if (dx < 0) goTo(current + 1);
+    else goTo(current - 1);
+  });
+  viewport?.addEventListener('pointercancel', () => { startX = null; });
+
   modal?.querySelector('[data-modal-close]')?.addEventListener('click', () => modal.close());
-
-  modal?.addEventListener('click', (e) => {
-    if (e.target === modal) modal.close();
-  });
-
-  modal?.addEventListener('close', () => {
-    if (iframe) iframe.src = '';
-  });
+  modal?.addEventListener('click', (e) => { if (e.target === modal) modal.close(); });
+  modal?.addEventListener('close', () => { iframes.forEach(f => f.src = ''); });
 </script>
