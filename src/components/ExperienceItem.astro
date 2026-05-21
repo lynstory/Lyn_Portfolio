@@ -9,6 +9,7 @@ interface Props {
 const { entry } = Astro.props;
 const { title, period, org, category, current } = entry.data;
 const { Content } = await render(entry);
+const isBlenderUE = entry.id === "blender-unreal-edu";
 
 const tagStyle: Record<string, string> = {
   "학교/학술":      "bg-blue-50 text-blue-700",
@@ -57,6 +58,17 @@ const tagStyle: Record<string, string> = {
       <div class="text-sm text-gray-600 leading-relaxed prose prose-sm max-w-none">
         <Content />
       </div>
+
+      {isBlenderUE && (
+        <button
+          type="button"
+          data-modal-open="blender-ue5"
+          class="mt-4 inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-900 text-white text-xs font-medium rounded-full hover:bg-gray-700 transition-colors cursor-pointer"
+        >
+          개인 프로젝트 보기
+          <span aria-hidden="true">▸</span>
+        </button>
+      )}
     </div>
   </div>
 

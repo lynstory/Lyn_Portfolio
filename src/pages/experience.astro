@@ -58,6 +58,32 @@ const sorted = allExp.sort((a, b) => a.data.order - b.data.order);
 
 </BaseLayout>
 
+<!-- Blender/UE5 영상 모달 -->
+<dialog
+  id="blender-ue5-modal"
+  class="rounded-2xl p-0 bg-transparent backdrop:bg-black/60 max-w-4xl w-[92vw]"
+  aria-label="개인 프로젝트 영상"
+>
+  <div class="relative bg-white rounded-2xl overflow-hidden">
+    <button
+      type="button"
+      data-modal-close
+      aria-label="닫기"
+      class="absolute top-3 right-3 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-white/90 hover:bg-white text-gray-700 cursor-pointer"
+    >✕</button>
+    <div class="aspect-video w-full bg-black">
+      <iframe
+        data-modal-iframe
+        src=""
+        title="개인 프로젝트 영상"
+        class="w-full h-full"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </div>
+</dialog>
+
 <script>
   const filterBtns = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
   const items = document.querySelectorAll<HTMLElement>('#exp-list [data-category]');
@@ -91,4 +117,27 @@ const sorted = allExp.sort((a, b) => a.data.order - b.data.order);
     btn.classList.remove('bg-gray-900', 'text-white');
     btn.classList.add('bg-[#F0EBE3]', 'text-gray-600', 'hover:bg-[#E5DDD4]');
   }
+
+  // 모달 제어
+  const modal = document.getElementById('blender-ue5-modal') as HTMLDialogElement | null;
+  const iframe = modal?.querySelector<HTMLIFrameElement>('[data-modal-iframe]');
+  const embedUrl = 'https://www.youtube.com/embed/IpsGFjavhq0?autoplay=1&rel=0';
+
+  document.querySelectorAll<HTMLButtonElement>('[data-modal-open="blender-ue5"]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (!modal || !iframe) return;
+      iframe.src = embedUrl;
+      modal.showModal();
+    });
+  });
+
+  modal?.querySelector('[data-modal-close]')?.addEventListener('click', () => modal.close());
+
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) modal.close();
+  });
+
+  modal?.addEventListener('close', () => {
+    if (iframe) iframe.src = '';
+  });
 </script>
