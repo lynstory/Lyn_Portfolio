@@ -5,10 +5,18 @@ import ProjectCard from "../components/ProjectCard.astro";
 
 const base = import.meta.env.BASE_URL;
 
-// 대표 Projects 3개: featured=true + date desc (ROADMAP §7.2)
+// Featured Projects: 어필 우선순위 순 (UPDATE-PLAN §6-1)
+const homeFeaturedOrder = ["apye-korea", "kakao-ansan-impact", "ai-pm-experiment"];
 const allProjects = await getCollection("projects", ({ data }) => data.featured && !data.draft);
 const featuredProjects = allProjects
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .sort((a, b) => {
+    const ai = homeFeaturedOrder.indexOf(a.id);
+    const bi = homeFeaturedOrder.indexOf(b.id);
+    if (ai === -1 && bi === -1) return b.data.date.getTime() - a.data.date.getTime();
+    if (ai === -1) return 1;
+    if (bi === -1) return -1;
+    return ai - bi;
+  })
   .slice(0, 3);
 
 const hashtags = ["#문제해결", "#동기설계", "#0→1 실행", "#국제협업", "#AI기반기획"];
@@ -75,10 +83,10 @@ const hashtags = ["#문제해결", "#동기설계", "#0→1 실행", "#국제협
   </div>
   </section>
 
-  <!-- Selected Projects -->
+  <!-- Featured Projects -->
   <section class="fade-in-up max-w-5xl mx-auto px-6 pb-24">
     <div class="flex items-center justify-between mb-8">
-      <h2 class="text-xl font-bold text-gray-900">Selected Projects</h2>
+      <h2 class="text-xl font-bold text-gray-900">Featured Projects</h2>
       <a
         href={`${base}projects`}
         class="text-sm text-gray-500 hover:text-gray-900 transition-colors flex items-center gap-1"
