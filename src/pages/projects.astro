@@ -11,15 +11,36 @@ const allProjects = await getCollection("projects", ({ data }) => !data.draft);
 // Featured 큰 카드: highlight=true 1장
 const highlightedProject = allProjects.find((p) => p.data.highlight);
 
-// Featured 작은 카드: featured=true && highlight=false, 최신순
+// Featured 작은 카드: 어필 우선순위 순 (UPDATE-PLAN §6-1)
+const featuredSmallOrder = ["kakao-ansan-impact", "ai-pm-experiment"];
 const featuredSmall = allProjects
   .filter((p) => p.data.featured && !p.data.highlight)
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+  .sort((a, b) => {
+    const ai = featuredSmallOrder.indexOf(a.id);
+    const bi = featuredSmallOrder.indexOf(b.id);
+    if (ai === -1 && bi === -1) return b.data.date.getTime() - a.data.date.getTime();
+    if (ai === -1) return 1;
+    if (bi === -1) return -1;
+    return ai - bi;
+  });
 
-// Other Projects: featured=false, 최신순
+// Other Projects: 어필 우선순위 순 (UPDATE-PLAN §6-2)
+const otherProjectsOrder = [
+  "moojigaeng",
+  "zero-to-one",
+  "creative-convergence-camp",
+  "chinmance",
+];
 const otherProjects = allProjects
   .filter((p) => !p.data.featured)
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+  .sort((a, b) => {
+    const ai = otherProjectsOrder.indexOf(a.id);
+    const bi = otherProjectsOrder.indexOf(b.id);
+    if (ai === -1 && bi === -1) return b.data.date.getTime() - a.data.date.getTime();
+    if (ai === -1) return 1;
+    if (bi === -1) return -1;
+    return ai - bi;
+  });
 ---
 
 <BaseLayout
