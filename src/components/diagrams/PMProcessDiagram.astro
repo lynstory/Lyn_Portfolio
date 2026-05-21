@@ -1,0 +1,114 @@
+---
+const steps = [
+  {
+    num: 1,
+    title: "PRD 작성",
+    desc: ["ex. PRD Agent", "AI의 설계 초안"],
+    badge: "bg-rose-500",
+    border: "border-rose-300",
+    bg: "bg-rose-50",
+    text: "text-rose-700",
+  },
+  {
+    num: 2,
+    title: "Wire Frame",
+    desc: ["HTML + API", "동작하는 프로토타입"],
+    badge: "bg-[#3B5BA9]",
+    border: "border-[#3B5BA9]/50",
+    bg: "bg-[#3B5BA9]/5",
+    text: "text-[#3B5BA9]",
+  },
+  {
+    num: 3,
+    title: "의사결정",
+    desc: ["리뷰 & 피드백", "실용적이고 검증"],
+    badge: "bg-amber-500",
+    border: "border-amber-300",
+    bg: "bg-amber-50",
+    text: "text-amber-700",
+  },
+  {
+    num: 4,
+    title: "최종 PRD",
+    desc: ["최종 문서", "개발 디자인 검증"],
+    badge: "bg-emerald-500",
+    border: "border-emerald-300",
+    bg: "bg-emerald-50",
+    text: "text-emerald-700",
+  },
+];
+---
+<div class="not-prose my-10 rounded-2xl border border-gray-100 bg-gray-50 p-6 md:p-10 font-sans">
+
+  <!-- 그라디언트 라인 -->
+  <div class="h-0.5 w-full rounded-full bg-gradient-to-r from-rose-400 via-violet-400 to-[#3B5BA9] opacity-60 mb-6"></div>
+
+  <!-- 헤딩 -->
+  <h3 class="text-xl md:text-2xl font-bold text-gray-900 text-center mb-12">Lyn의 AI 시대 기획 프로세스</h3>
+
+  <!-- 4단계 박스 -->
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-x-3 gap-y-6 mb-10 relative">
+    {steps.map((step, i) => (
+      <div class={`relative flex flex-col items-center rounded-xl border-2 pt-6 pb-5 px-4 ${step.border} ${step.bg}`}>
+        <!-- STEP 배지 -->
+        <span class={`absolute -top-3 left-3 px-2 py-0.5 rounded-full text-xs font-bold text-white ${step.badge}`}>
+          STEP {step.num}
+        </span>
+        <p class={`text-base font-bold mb-2 text-center ${step.text}`}>{step.title}</p>
+        {step.desc.map((d) => (
+          <p class="text-xs text-gray-500 text-center leading-relaxed">{d}</p>
+        ))}
+      </div>
+    ))}
+
+    <!-- 데스크탑 전용: 박스 사이 컬러 연결선 -->
+    <!-- Tailwind로 grid gap 사이에 절대 위치로 선을 그리기 어려우므로 overlay SVG 사용 -->
+  </div>
+
+  <!-- 스텝 연결 설명 (모바일 포함) -->
+  <div class="hidden md:flex justify-center items-center gap-3 -mt-8 mb-10">
+    <div class="flex-1 h-px border-t-2 border-dashed border-rose-300 ml-16"></div>
+    <div class="flex-1 h-px border-t-2 border-dashed border-[#3B5BA9]/50"></div>
+    <div class="flex-1 h-px border-t-2 border-dashed border-amber-300 mr-16"></div>
+  </div>
+
+  <!-- 핵심 변화 -->
+  <div class="mb-8">
+    <p class="text-xs font-semibold text-[#3B5BA9] text-center tracking-widest uppercase mb-4">핵심 변화</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+      <!-- 기존 방식 -->
+      <div class="rounded-xl border border-gray-200 bg-white p-5">
+        <p class="text-sm font-semibold text-gray-700 mb-2">
+          기존: 문서로 설명 → 상상으로 판단
+        </p>
+        <p class="text-xs text-gray-400 leading-relaxed">
+          "이렇게 만들어주세요" (결과 그림)
+        </p>
+      </div>
+
+      <!-- Lyn 방식 -->
+      <div class="rounded-xl border-2 border-rose-200 bg-rose-50 p-5">
+        <p class="text-sm font-semibold text-rose-700 mb-2">
+          Lyn: 실물 먼저 → 보고 판단
+        </p>
+        <p class="text-xs text-gray-500 leading-relaxed">
+          "이게 써보세요" (동작하는 프로토타입)
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 하단 메시지 -->
+  <div class="text-center space-y-3 border-t border-gray-200 pt-8">
+    <p class="text-sm text-gray-500 leading-relaxed">
+      PRD → 프로토타입을 먼저 만들고<br/>
+      실물을 보고 의사결정한 후, 개발/디자인에 전달
+    </p>
+    <p class="text-lg md:text-xl font-bold text-gray-900">
+      문서가 아니라 <span class="text-[#3B5BA9]">실물</span>로 의사결정하는 프로세스
+    </p>
+  </div>
+
+</div>

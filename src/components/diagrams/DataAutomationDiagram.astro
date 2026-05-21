@@ -1,0 +1,105 @@
+---
+const sources = [
+  { name: "GA4",      desc: "트래픽·이벤트", cls: "border-amber-400 text-amber-700" },
+  { name: "GTM",      desc: "태그 관리",     cls: "border-[#3B5BA9] text-[#3B5BA9]" },
+  { name: "Clarity",  desc: "UX 세션",       cls: "border-violet-400 text-violet-700" },
+  { name: "GSC",      desc: "검색 성과",     cls: "border-sky-400 text-sky-700" },
+  { name: "Sheets",   desc: "결제·매출",     cls: "border-emerald-400 text-emerald-700" },
+  { name: "BigQuery", desc: "코호트",        cls: "border-purple-400 text-purple-700" },
+];
+const barHeights = [3, 5, 4, 6, 5, 7, 5];
+---
+<div class="not-prose my-10 rounded-2xl border border-gray-100 bg-gray-50 p-6 md:p-10 font-sans">
+
+  <!-- 그라디언트 라인 -->
+  <div class="h-0.5 w-full rounded-full bg-gradient-to-r from-rose-400 via-violet-400 to-[#3B5BA9] opacity-60 mb-6"></div>
+
+  <!-- 좌상단 캡션 -->
+  <p class="text-xs font-semibold text-[#3B5BA9] tracking-widest uppercase mb-6">업무 자동화</p>
+
+  <!-- 헤딩 -->
+  <h3 class="text-xl md:text-2xl font-bold text-gray-900 text-center mb-10">① 데이터 대시보드 + 주간 인사이트 보고서</h3>
+
+  <!-- 다이어그램: 모바일 세로 스택, 데스크탑 가로 5칸 -->
+  <div class="flex flex-col md:flex-row md:items-center gap-4 md:gap-3 mb-10">
+
+    <!-- 좌: 데이터 소스 6종 -->
+    <div class="w-full md:flex-1">
+      <p class="text-xs font-semibold text-gray-500 text-center mb-3">데이터 소스 6종</p>
+      <div class="flex flex-col gap-2">
+        {sources.map((s) => (
+          <div class={`flex items-center gap-3 rounded-lg border-2 bg-white px-3 py-2 ${s.cls}`}>
+            <span class={`text-sm font-bold w-16 shrink-0`}>{s.name}</span>
+            <span class="text-xs text-gray-500">{s.desc}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- 좌→중 화살표 (데스크탑만) -->
+    <div class="hidden md:flex items-center shrink-0">
+      <div class="h-px w-8 border-t-2 border-dashed border-gray-300"></div>
+      <svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7 5L0.25 9.33013L0.25 0.669872L7 5Z" fill="#9CA3AF" opacity="0.8"/>
+      </svg>
+    </div>
+
+    <!-- 중앙: Claude Code -->
+    <div class="flex justify-center md:shrink-0">
+      <div class="rounded-xl border-2 border-[#3B5BA9] bg-[#3B5BA9]/5 px-6 py-6 text-center min-w-[140px]">
+        <p class="text-base font-bold text-[#3B5BA9] mb-1">Claude Code</p>
+        <p class="text-xs text-gray-500 mb-3">+ MCP 커넥터</p>
+        <p class="text-sm font-semibold text-gray-700 leading-relaxed">자동 수정·분석·요약</p>
+      </div>
+    </div>
+
+    <!-- 중→우 화살표 (데스크탑만) -->
+    <div class="hidden md:flex items-center shrink-0">
+      <div class="h-px w-8 border-t-2 border-dashed border-[#3B5BA9]/50"></div>
+      <svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7 5L0.25 9.33013L0.25 0.669872L7 5Z" fill="#3B5BA9" opacity="0.7"/>
+      </svg>
+    </div>
+
+    <!-- 우: 산출물 2종 -->
+    <div class="w-full md:flex-1 flex flex-col gap-3">
+
+      <!-- 통합 대시보드 -->
+      <div class="rounded-xl border-2 border-[#3B5BA9] bg-white p-4">
+        <p class="text-sm font-bold text-[#3B5BA9] text-center mb-3">통합 대시보드</p>
+        <!-- 미니 바 차트 시각화 -->
+        <div class="flex gap-1 justify-center items-end mb-2" style="height: 32px">
+          {barHeights.map((h) => (
+            <div class="w-4 rounded-sm bg-[#3B5BA9]/40" style={`height: ${h * 4}px`}></div>
+          ))}
+        </div>
+        <p class="text-xs text-gray-400 text-center">7대 탭 · KPI · 차트</p>
+      </div>
+
+      <!-- 주간 인사이트 보고서 -->
+      <div class="rounded-xl border-2 border-emerald-300 bg-white p-4">
+        <p class="text-sm font-bold text-emerald-700 text-center mb-3">주간 인사이트 보고서</p>
+        <ul class="space-y-1.5">
+          <li class="text-xs text-gray-600">📊 이번 주 트래픽 -12%</li>
+          <li class="text-xs text-gray-600">🔍 핵심 검색어 TOP 5</li>
+          <li class="text-xs text-gray-600">💡 이탈률 개선 제안 3개</li>
+          <li class="text-xs text-gray-600">🚀 다음 주 액션 5개</li>
+          <li class="text-xs font-semibold text-emerald-700 mt-2">LLM 기반 자동 작성</li>
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- 하단 메시지 -->
+  <div class="text-center space-y-3 border-t border-gray-200 pt-8">
+    <p class="text-sm text-gray-500">
+      기획자가 <span class="font-semibold text-gray-900">직접 데이터를 읽고 · 분석하고 · 공유</span>한다
+    </p>
+    <p class="text-lg md:text-xl font-bold text-gray-900">
+      데이터 분석가 없어도 PM이 직접 인사이트를 만든다
+    </p>
+  </div>
+
+</div>
