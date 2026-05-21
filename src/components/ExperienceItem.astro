@@ -60,14 +60,26 @@ const tagStyle: Record<string, string> = {
       </div>
 
       {isBlenderUE && (
-        <button
-          type="button"
-          data-modal-open="blender-ue5"
-          class="mt-4 inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-900 text-white text-xs font-medium rounded-full hover:bg-gray-700 transition-colors cursor-pointer"
-        >
-          개인 프로젝트 보기
-          <span aria-hidden="true">▸</span>
-        </button>
+        <div class="mt-4 flex flex-wrap gap-2">
+          <button
+            type="button"
+            data-modal-open="blender-ue5"
+            data-video-id="IpsGFjavhq0"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-900 text-white text-xs font-medium rounded-full hover:bg-gray-700 transition-colors cursor-pointer"
+          >
+            개인 프로젝트1 보기
+            <span aria-hidden="true">▸</span>
+          </button>
+          <button
+            type="button"
+            data-modal-open="blender-ue5"
+            data-video-id="5-oH4xFLu-o"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-900 text-white text-xs font-medium rounded-full hover:bg-gray-700 transition-colors cursor-pointer"
+          >
+            개인 프로젝트2 보기
+            <span aria-hidden="true">▸</span>
+          </button>
+        </div>
       )}
     </div>
   </div>

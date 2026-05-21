@@ -121,12 +121,13 @@ const sorted = allExp.sort((a, b) => a.data.order - b.data.order);
   // 모달 제어
   const modal = document.getElementById('blender-ue5-modal') as HTMLDialogElement | null;
   const iframe = modal?.querySelector<HTMLIFrameElement>('[data-modal-iframe]');
-  const embedUrl = 'https://www.youtube.com/embed/IpsGFjavhq0?autoplay=1&rel=0';
 
   document.querySelectorAll<HTMLButtonElement>('[data-modal-open="blender-ue5"]').forEach(btn => {
     btn.addEventListener('click', () => {
       if (!modal || !iframe) return;
-      iframe.src = embedUrl;
+      const videoId = btn.dataset.videoId;
+      if (!videoId) return;
+      iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
       modal.showModal();
     });
   });
