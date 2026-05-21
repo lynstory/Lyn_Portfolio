@@ -181,7 +181,7 @@ const sorted = allExp.sort((a, b) => a.data.order - b.data.order);
     if (idx < 0 || idx >= slideIds.length || idx === current) return;
     const prev = current;
     current = idx;
-    if (iframes[idx] && !iframes[idx].src) iframes[idx].src = buildSrc(slideIds[idx]);
+    if (iframes[idx]) iframes[idx].src = buildSrc(slideIds[idx]);
     positionTrack(true);
     setTimeout(() => { if (iframes[prev]) iframes[prev].src = ''; }, 320);
     updateArrows();
