@@ -10,6 +10,7 @@ const { entry } = Astro.props;
 const { title, period, org, category, current } = entry.data;
 const { Content } = await render(entry);
 const isBlenderUE = entry.id === "blender-unreal-edu";
+const isAPYE = entry.id === "apye";
 
 const tagStyle: Record<string, string> = {
   "학교/학술":      "bg-blue-50 text-blue-700",
@@ -86,6 +87,19 @@ const tagStyle: Record<string, string> = {
             class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-900 text-white text-xs font-medium rounded-full hover:bg-gray-700 transition-colors cursor-pointer"
           >
             3D 툴 활용 보기
+            <span aria-hidden="true">▸</span>
+          </button>
+        </div>
+      )}
+
+      {isAPYE && (
+        <div class="mt-4 flex flex-wrap gap-2">
+          <button
+            type="button"
+            data-modal-open="apye"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-900 text-white text-xs font-medium rounded-full hover:bg-gray-700 transition-colors cursor-pointer"
+          >
+            활동 영상 보기
             <span aria-hidden="true">▸</span>
           </button>
         </div>
