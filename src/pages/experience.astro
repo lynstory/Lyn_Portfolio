@@ -201,6 +201,34 @@ const base = import.meta.env.BASE_URL;
   </div>
 </dialog>
 
+<!-- 한양대학교 홈페이지 안내 모달 -->
+<dialog
+  id="hanyang-major-modal"
+  class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-0 bg-transparent backdrop:bg-black/60 w-[92vw] max-w-md"
+  aria-label="한양대학교 홈페이지 안내"
+>
+  <div class="relative bg-white rounded-2xl p-6 sm:p-8">
+    <button
+      type="button"
+      data-hanyang-major-close
+      aria-label="닫기"
+      class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full bg-white/90 hover:bg-gray-100 text-gray-700 cursor-pointer"
+    >✕</button>
+    <h3 class="text-lg font-bold text-gray-900 mb-2 pr-8">한양대학교</h3>
+    <p class="text-xs text-gray-500 mb-1">공식 웹사이트</p>
+    <p class="text-sm text-gray-600 break-all mb-5">https://www.hanyang.ac.kr/web/www</p>
+    <a
+      href="https://www.hanyang.ac.kr/web/www"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-1.5 px-4 py-2 bg-gray-900 text-white text-sm font-medium rounded-full hover:bg-gray-700 transition-colors"
+    >
+      사이트 방문하기
+      <span aria-hidden="true">↗</span>
+    </a>
+  </div>
+</dialog>
+
 <!-- OVAL KOREA 지부 안내 모달 -->
 <dialog
   id="oval-modal"
@@ -393,4 +421,12 @@ const base = import.meta.env.BASE_URL;
   });
   healLabModal?.querySelector('[data-heal-lab-close]')?.addEventListener('click', () => healLabModal.close());
   healLabModal?.addEventListener('click', (e) => { if (e.target === healLabModal) healLabModal.close(); });
+
+  // 한양대학교 홈페이지 안내 모달
+  const hanyangMajorModal = document.getElementById('hanyang-major-modal') as HTMLDialogElement | null;
+  document.querySelectorAll<HTMLButtonElement>('[data-modal-open="hanyang-major"]').forEach(btn => {
+    btn.addEventListener('click', () => hanyangMajorModal?.showModal());
+  });
+  hanyangMajorModal?.querySelector('[data-hanyang-major-close]')?.addEventListener('click', () => hanyangMajorModal.close());
+  hanyangMajorModal?.addEventListener('click', (e) => { if (e.target === hanyangMajorModal) hanyangMajorModal.close(); });
 </script>
