@@ -13,6 +13,7 @@ const isBlenderUE = entry.id === "blender-unreal-edu";
 const isAPYE = entry.id === "apye";
 const isNationwideWalk = entry.id === "nationwide-walk";
 const isOVAL = entry.id === "oval-korea";
+const isHealLab = entry.id === "heal-lab";
 
 const tagStyle: Record<string, string> = {
   "학교/학술":      "bg-blue-50 text-blue-700",
@@ -115,6 +116,19 @@ const tagStyle: Record<string, string> = {
             class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-900 text-white text-xs font-medium rounded-full hover:bg-gray-700 transition-colors cursor-pointer"
           >
             활동 사진 보기
+            <span aria-hidden="true">▸</span>
+          </button>
+        </div>
+      )}
+
+      {isHealLab && (
+        <div class="mt-4 flex flex-wrap gap-2">
+          <button
+            type="button"
+            data-modal-open="heal-lab"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-900 text-white text-xs font-medium rounded-full hover:bg-gray-700 transition-colors cursor-pointer"
+          >
+            연구실 보기
             <span aria-hidden="true">▸</span>
           </button>
         </div>
