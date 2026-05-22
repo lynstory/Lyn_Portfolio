@@ -11,6 +11,7 @@ const { title, period, org, category, current } = entry.data;
 const { Content } = await render(entry);
 const isBlenderUE = entry.id === "blender-unreal-edu";
 const isAPYE = entry.id === "apye";
+const isNationwideWalk = entry.id === "nationwide-walk";
 
 const tagStyle: Record<string, string> = {
   "학교/학술":      "bg-blue-50 text-blue-700",
@@ -100,6 +101,19 @@ const tagStyle: Record<string, string> = {
             class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-900 text-white text-xs font-medium rounded-full hover:bg-gray-700 transition-colors cursor-pointer"
           >
             활동 영상 보기
+            <span aria-hidden="true">▸</span>
+          </button>
+        </div>
+      )}
+
+      {isNationwideWalk && (
+        <div class="mt-4 flex flex-wrap gap-2">
+          <button
+            type="button"
+            data-modal-open="nationwide-walk"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-900 text-white text-xs font-medium rounded-full hover:bg-gray-700 transition-colors cursor-pointer"
+          >
+            활동 사진 보기
             <span aria-hidden="true">▸</span>
           </button>
         </div>
