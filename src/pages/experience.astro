@@ -7,6 +7,7 @@ const categories = ["학교/학술", "동아리/대외활동", "국제 활동", 
 
 const allExp = await getCollection("experience");
 const sorted = allExp.sort((a, b) => a.data.order - b.data.order);
+const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout title="Experience" description="다양한 경험을 통해 성장해왔습니다.">
@@ -160,7 +161,7 @@ const sorted = allExp.sort((a, b) => a.data.order - b.data.order);
         {Array.from({ length: 10 }, (_, i) => i + 1).map((n) => (
           <div class="aspect-square overflow-hidden rounded-lg bg-gray-100">
             <img
-              src={`/experience/nationwide-walk/${n}.png`}
+              src={`${base}experience/nationwide-walk/${n}.png`}
               alt={`국토대장정 활동 사진 ${n}`}
               class="w-full h-full object-cover"
               loading="lazy"
