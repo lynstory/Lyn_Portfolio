@@ -1,0 +1,152 @@
+---
+// 친만스 상세 페이지용 — 칼럼글 4개 2x2 카드 버튼 + 전문 모달
+// 원문: public/projects/make-friend-school/column.txt
+
+const columns = [
+  {
+    key: "column-1",
+    buttonLabel: "칼럼글1 보기",
+    title: "칼럼 1",
+    body: `삶에서 얻어야 할 유일한 것은
+삶을 [경험] 함으로써 얻는 성장임을 이해했을 때
+두려움은 사라질 것이다
+[삶] 그 자체가 당신의 경력 이며
+[삶] 과의 사귐이야말로 가장 의미 깊은 관계이다
+삶에 진정한 의미를 부여해주는 것은
+삶을 기꺼이 살고자 하는 태도이다
+그것은 어떤 특별한 사건이 아니라
+삶의 사건들을
+기꺼이 오롯이 [경험] 하고자 하는 태도이다`,
+  },
+  {
+    key: "column-2",
+    buttonLabel: "칼럼글2 보기",
+    title: "칼럼 2",
+    body: `늘 스스로에게 진실하며
+내가 가장 행복할 수 있는 방식으로 지내는 것
+
+내가 더 행복해지고 자유로워질수록
+나는 더 많은 사람에게 기쁨을 줄 수 있다.
+그저 내 가슴을 따르며 살아갈 때
+나는 결코 잘못할 수 없다.
+
+내 자신에 대한 조건 없는 사랑은
+나의 에너지를 증가시키고
+우주도 그에 맞추어 움직인다.
+
+매순간 내가 진실로 해야 하는 것은 그 자리에서
+깨어 있는 의식으로 사는 것이다.
+
+스스로를 조건 없이 사랑하고
+두려움 없이 자기 자신이 되라
+
+내 안의 열정을 불러일으켜 최선을 다하게 하는 것,
+살아 있는 느낌이 들게 하는 것을 받아들여라
+당신만의 독특함을 두려움 없이 마음껏 표현하는 것이다.
+
+그것이 바로 당신이 지금
+이 모습으로 살고 있는 이유이고
+여기 이 물질 세상에 와 있는 이유다.`,
+  },
+  {
+    key: "column-3",
+    buttonLabel: "칼럼글3 보기",
+    title: "칼럼 3",
+    body: `잘 어울릴 것 같은 옷을 사왔는데 그것이 갑자기 싫어졌다거나,
+아니면 더이상 어울리지 않았다거나,
+또 아니면 그 옷에 어떤 문제가 생겼던 일이 있었을 것이다.
+
+그리고 어떤 옷이 눈에 띈 즉시 마음에 들어서 샀는데
+그것을 아직도 즐겨 입고 있는 그런 일도 있을 것이다.
+
+이 두 가지 경우 사이에서 다른 점은
+앞의 옷은 다른 사람의 것이고 뒤의 옷은 나의 것이라는 사실이다.
+
+.
+삶에서 내가 취하게 되는 모든 것은 옷과 같다.
+
+자신을 스스로 허락하기만 한다면,
+삶은 사실상 하나의 가벼운 소풍이다.
+
+편안한 마음으로 쇼핑을 나가라.
+
+오늘 아무것도 사지 못했다고 할지라도,
+당신은 이미 남의 물건을 사들이는 불상사로부터
+자신을 구해낸 것이다.
+당신의 물건이 어딘가에서 기다리고 있다는 것을 알므로
+당신은 평온하고 확신에 가득 차 있다.
+
+그리고 당신은 그것을 틀림없이 찾아낼 것이다.`,
+  },
+  {
+    key: "column-4",
+    buttonLabel: "칼럼글4 보기",
+    title: "칼럼 4",
+    body: `베풀고, 남을 더 배려하고,
+타인의 삶에 선한 영향력을 미치고 진실하게 주고,
+주는 것과 받는 것 모두에 문을 열어두는 삶.
+
+그런 삶이 아이들 동화에서만 등장하는 이야기는
+아니다.
+
+목표가 무엇이든
+먼저 베푸는 사람이 되어야 성공할 수 있다.
+
+어떤 이에 대한 대가나, 전략적으로 베푸는 것이 아니라
+베푸는 것 그 자체가
+삶을 더 충만하고 만족스럽게 해 줄 것이다.
+
+100퍼센트.
+상대방이 이기도록 하는 것이
+내가 이기는 길이다.`,
+  },
+];
+---
+
+<!-- 칼럼 카드 버튼 2x2 (왼위=1, 오른위=2, 왼아래=3, 오른아래=4) -->
+<div class="not-prose grid grid-cols-2 gap-3 sm:gap-4 my-8">
+  {columns.map((c) => (
+    <button
+      type="button"
+      data-modal-open={c.key}
+      class="group flex items-center justify-between gap-3 p-5 sm:p-6 bg-white border border-gray-200 rounded-2xl hover:border-gray-900 hover:shadow-md transition-all cursor-pointer text-left"
+    >
+      <span class="text-sm sm:text-base font-bold text-gray-900">{c.buttonLabel}</span>
+      <span aria-hidden="true" class="text-gray-400 group-hover:text-gray-900 transition-colors">▸</span>
+    </button>
+  ))}
+</div>
+
+<!-- 칼럼 전문 모달 4개 -->
+{columns.map((c) => (
+  <dialog
+    id={`${c.key}-modal`}
+    class="not-prose fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-0 bg-transparent backdrop:bg-black/60 w-[92vw] max-w-lg"
+    aria-label={c.title}
+  >
+    <div class="relative bg-white rounded-2xl max-h-[85vh] flex flex-col">
+      <button
+        type="button"
+        data-modal-close
+        aria-label="닫기"
+        class="absolute top-3 right-3 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-white/90 hover:bg-gray-100 text-gray-700 cursor-pointer shadow"
+      >✕</button>
+      <div class="overflow-y-auto p-6 sm:p-8">
+        <h3 class="text-lg font-bold text-gray-900 mb-4 pr-8">{c.title}</h3>
+        <p class="text-sm sm:text-base text-gray-700 leading-relaxed whitespace-pre-line">{c.body}</p>
+      </div>
+    </div>
+  </dialog>
+))}
+
+<script>
+  function wireModal(key: string) {
+    const modal = document.getElementById(`${key}-modal`) as HTMLDialogElement | null;
+    document.querySelectorAll<HTMLButtonElement>(`[data-modal-open="${key}"]`).forEach(btn => {
+      btn.addEventListener('click', () => modal?.showModal());
+    });
+    modal?.querySelector('[data-modal-close]')?.addEventListener('click', () => modal?.close());
+    modal?.addEventListener('click', (e) => { if (e.target === modal) modal.close(); });
+  }
+  ['column-1', 'column-2', 'column-3', 'column-4'].forEach(wireModal);
+</script>
