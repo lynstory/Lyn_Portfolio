@@ -258,6 +258,116 @@ const base = import.meta.env.BASE_URL;
   </div>
 </dialog>
 
+<!-- 내일찾기 프로젝트 자료 모달 -->
+<dialog
+  id="codelab-pm-1-modal"
+  class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-0 bg-transparent backdrop:bg-black/60 w-[92vw] max-w-md"
+  aria-label="내일찾기 프로젝트 자료"
+>
+  <div class="relative bg-white rounded-2xl p-6 sm:p-8">
+    <button
+      type="button"
+      data-codelab-pm-1-close
+      aria-label="닫기"
+      class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full bg-white/90 hover:bg-gray-100 text-gray-700 cursor-pointer"
+    >✕</button>
+    <h3 class="text-lg font-bold text-gray-900 mb-4 pr-8">내일찾기</h3>
+    <div class="flex flex-col gap-2">
+      <a
+        href="https://app.notion.com/p/2026-396ba86bd6ea8013960ef34f60b3545e?source=copy_link"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center justify-between gap-2 px-4 py-3 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors text-sm font-medium text-gray-900"
+      >
+        내일찾기 문서 전체 보기
+        <span aria-hidden="true">↗</span>
+      </a>
+      <a
+        href="https://lynstory.github.io/findtomorrow_prototype_by_Lyn07/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center justify-between gap-2 px-4 py-3 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors text-sm font-medium text-gray-900"
+      >
+        프로토타입 체험해보기
+        <span aria-hidden="true">↗</span>
+      </a>
+      <a
+        href="https://www.figma.com/deck/6cdbt1A95dVXIeVkNeJ8ws/%EB%82%B4%EC%9D%BC%EC%B0%BE%EA%B8%B0-PPT--%EB%B3%91%ED%98%84--%EC%A0%95%EB%A6%B0-?node-id=12-265&t=myafwX12j9yDcqnO-1"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center justify-between gap-2 px-4 py-3 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors text-sm font-medium text-gray-900"
+      >
+        내일찾기 소개 자료 보기
+        <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </div>
+</dialog>
+
+<!-- 피움 프로젝트 자료 모달 -->
+<dialog
+  id="codelab-pm-2-modal"
+  class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-0 bg-transparent backdrop:bg-black/60 w-[92vw] max-w-md"
+  aria-label="피움 프로젝트 자료"
+>
+  <div class="relative bg-white rounded-2xl p-6 sm:p-8">
+    <button
+      type="button"
+      data-codelab-pm-2-close
+      aria-label="닫기"
+      class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full bg-white/90 hover:bg-gray-100 text-gray-700 cursor-pointer"
+    >✕</button>
+    <h3 class="text-lg font-bold text-gray-900 mb-4 pr-8">피움</h3>
+    <div class="flex flex-col gap-2">
+      <a
+        href="https://piwoom-viewer.netlify.app/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center justify-between gap-2 px-4 py-3 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors text-sm font-medium text-gray-900"
+      >
+        피움 문서 뷰어로 한눈에 전체 보기
+        <span aria-hidden="true">↗</span>
+      </a>
+      <a
+        href="https://piwoom-prototype.netlify.app/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center justify-between gap-2 px-4 py-3 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors text-sm font-medium text-gray-900"
+      >
+        프로토타입 체험해보기
+        <span aria-hidden="true">↗</span>
+      </a>
+      <a
+        href="https://piwoom-screen-design-document.netlify.app/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center justify-between gap-2 px-4 py-3 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors text-sm font-medium text-gray-900"
+      >
+        화면설계서 보기
+        <span aria-hidden="true">↗</span>
+      </a>
+      <a
+        href="https://piwoom-wireframe.netlify.app/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center justify-between gap-2 px-4 py-3 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors text-sm font-medium text-gray-900"
+      >
+        와이어프레임
+        <span aria-hidden="true">↗</span>
+      </a>
+      <a
+        href="https://piwoom-presentation.netlify.app/#s1"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center justify-between gap-2 px-4 py-3 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors text-sm font-medium text-gray-900"
+      >
+        프로젝트 소개 자료 보기
+        <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </div>
+</dialog>
+
 <script>
   const filterBtns = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
   const items = document.querySelectorAll<HTMLElement>('#exp-list [data-category]');
@@ -429,4 +539,20 @@ const base = import.meta.env.BASE_URL;
   });
   hanyangMajorModal?.querySelector('[data-hanyang-major-close]')?.addEventListener('click', () => hanyangMajorModal.close());
   hanyangMajorModal?.addEventListener('click', (e) => { if (e.target === hanyangMajorModal) hanyangMajorModal.close(); });
+
+  // 내일찾기 프로젝트 자료 모달
+  const codelabPm1Modal = document.getElementById('codelab-pm-1-modal') as HTMLDialogElement | null;
+  document.querySelectorAll<HTMLButtonElement>('[data-modal-open="codelab-pm-1"]').forEach(btn => {
+    btn.addEventListener('click', () => codelabPm1Modal?.showModal());
+  });
+  codelabPm1Modal?.querySelector('[data-codelab-pm-1-close]')?.addEventListener('click', () => codelabPm1Modal.close());
+  codelabPm1Modal?.addEventListener('click', (e) => { if (e.target === codelabPm1Modal) codelabPm1Modal.close(); });
+
+  // 피움 프로젝트 자료 모달
+  const codelabPm2Modal = document.getElementById('codelab-pm-2-modal') as HTMLDialogElement | null;
+  document.querySelectorAll<HTMLButtonElement>('[data-modal-open="codelab-pm-2"]').forEach(btn => {
+    btn.addEventListener('click', () => codelabPm2Modal?.showModal());
+  });
+  codelabPm2Modal?.querySelector('[data-codelab-pm-2-close]')?.addEventListener('click', () => codelabPm2Modal.close());
+  codelabPm2Modal?.addEventListener('click', (e) => { if (e.target === codelabPm2Modal) codelabPm2Modal.close(); });
 </script>
