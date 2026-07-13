@@ -7,9 +7,15 @@ interface Props {
   title: string;
   description?: string;
   hideFooter?: boolean;
+  ogTitle?: string;        // 소셜 카드 전용 제목 오버라이드
+  ogDescription?: string;  // 소셜 카드 전용 설명 오버라이드
 }
 
-const { title, description = "PM 직무 어필 포트폴리오 — 문제를 정의하고 해결하는 기획자.", hideFooter = false } = Astro.props;
+const { title, description = "PM 직무 어필 포트폴리오 — 문제를 정의하고 해결하는 기획자.", hideFooter = false, ogTitle, ogDescription } = Astro.props;
+
+// 소셜 카드(og/twitter) 제목·설명 — 오버라이드 없으면 기본값 사용
+const socialTitle = ogTitle ?? (title ? `${title} — Lyn` : "Lyn Portfolio");
+const socialDescription = ogDescription ?? description;
 
 // OG 미리보기 이미지 (절대 URL 필수) — public/Logo2.png 사용 (1254x1254)
 const ogImage = new URL(`${import.meta.env.BASE_URL}Logo2.png`, Astro.site).href;
@@ -47,8 +53,8 @@ const ogImage = new URL(`${import.meta.env.BASE_URL}Logo2.png`, Astro.site).href
 
     <!-- OG / Twitter 메타 -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content={title ? `${title} — Lyn` : "Lyn Portfolio"} />
-    <meta property="og:description" content={description} />
+    <meta property="og:title" content={socialTitle} />
+    <meta property="og:description" content={socialDescription} />
     <meta property="og:url" content={Astro.url.href} />
     <meta property="og:site_name" content="Lyn Portfolio" />
     <meta property="og:image" content={ogImage} />
@@ -56,8 +62,8 @@ const ogImage = new URL(`${import.meta.env.BASE_URL}Logo2.png`, Astro.site).href
     <meta property="og:image:height" content="1254" />
     <meta property="og:image:alt" content="Lyn Portfolio 로고" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content={title ? `${title} — Lyn` : "Lyn Portfolio"} />
-    <meta name="twitter:description" content={description} />
+    <meta name="twitter:title" content={socialTitle} />
+    <meta name="twitter:description" content={socialDescription} />
     <meta name="twitter:image" content={ogImage} />
 
     <title>{title} | Lyn</title>
