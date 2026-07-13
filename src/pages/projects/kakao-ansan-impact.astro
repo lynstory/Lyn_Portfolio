@@ -30,7 +30,7 @@ const citizenFlow = [
 
 const tools = [
   { name: "Figma",        sub: "디자인 및 프로토타입", slug: "figma" },
-  { name: "Miro",         sub: "아이디어 발산",         slug: "miro" },
+  { name: "GPT",          sub: "아이디어 발산",         slug: "openai" },
   { name: "Notion",       sub: "문서화 및 일정 관리",   slug: "notion" },
   { name: "Google Forms", sub: "설문 및 데이터 수집",   slug: "googleforms" },
   { name: "Instagram",    sub: "홍보 및 소통",           slug: "instagram" },
@@ -475,7 +475,7 @@ const headerBgs = ["bg-green-50", "bg-amber-50", "bg-purple-50"];
             <div class="space-y-2">
               {[
                 { num: "200+", label: "시민 참여 수" },
-                { num: "85%",  label: "공정 응답 비율" },
+                { num: "85%",  label: "긍정 응답 비율" },
                 { num: "120+", label: "시민 피드백 수" },
                 { num: "1,000+", label: "SNS 도달 수" },
               ].map(({ num, label }) => (
