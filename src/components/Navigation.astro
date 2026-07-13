@@ -18,7 +18,12 @@ function isActive(href: string) {
 <nav class="sticky top-0 z-50 bg-(--color-bg-warm) border-b border-[#E8E0D5]">
   <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between gap-8">
     <!-- 로고 -->
-    <a href={base} class="font-bold text-base text-gray-900 tracking-widest hover:text-gray-600 transition-colors shrink-0">
+    <a href={base} class="flex items-center gap-2 font-bold text-base text-gray-900 tracking-widest hover:text-gray-600 transition-colors shrink-0">
+      <img
+        src={`${base}Logo2.png`}
+        alt="Lyn 로고"
+        class="w-8 h-8 rounded-full object-cover ring-1 ring-gray-300 shrink-0"
+      />
       LYN.
     </a>
 
